@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <memory.h>
 
 typedef struct Node{
 	void *data;
@@ -14,6 +15,6 @@ typedef struct{
 
 list* create();
 int insert(list* , int , void*);
-void* Remove(list* , int index);
-int findIndex(list*, void*);
+int Remove(list* , int index);
+int findIndex(list*, void*,int);
 int length(list*);
