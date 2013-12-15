@@ -28,7 +28,6 @@ int compareInt (void* first, void* second){
 }
 
 int compareFloat(void* first, void* second){
-		printf("float value ==%f \n",*(float*)first);
         return (*(float*)first - *(float*)second);
 }
 
@@ -82,12 +81,12 @@ void test_should_arrange_double_data_in_order(){
     ASSERT(data[4]==5.1);
 }
 
-// void test_should_arrange_float_data_in_order(){
-// 	float data[5] = {5.1,4.12,3.13,2.14,1.15};
-//     isort(data, 5, sizeof(float), compareFloat);
-//     ASSERT(data[0]==1.15f);
-//     ASSERT(data[4]==5.1f);
-// }
+void test_should_arrange_float_data_in_order(){
+	float data[5] = {200.0,100.0,400.0,300.0,500.0};
+    isort(data, 5, sizeof(float), compareFloat);
+    ASSERT(data[0]==100.0f);
+    ASSERT(data[4]==500.0f);
+}
 
 void test_should_arrange_char_data_in_order(){
 	char data[5] = {'e','d','c','b','a'};

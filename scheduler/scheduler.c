@@ -15,8 +15,17 @@ process* createProcess(list* start,string name,int time,int priority){
 	return processPtr;
 }
 
+list* sortAndInsert(list * start, process* processPtr,process* temp){
+	int i;
+ 	temp = start->head;
+ 	while(temp->next != NULL)
+ 		temp = temp->next;
+ 	for(i=start->length;i>=0;i--){
+ 		if(processPtr->priority,temp->priority,sizeof(int)))
+ 	}
+}
 list* insertProcess(list * start, process *processPtr){
-	process* temp;
+	process* temp = (process*)calloc(sizeof(process),1);
 	if(start->length == 0)
 		return NULL;
 	else if(start->length == 1){
@@ -26,10 +35,7 @@ list* insertProcess(list * start, process *processPtr){
 	else{
 		temp= (process*)calloc(1,sizeof(process));
 		temp = start->head;
-		while(temp->next != NULL){
-			temp = temp->next;
-		}
-		temp->next = processPtr;
+		sortAndInsert(start,processPtr,temp);
 	}
 	return start;
 }

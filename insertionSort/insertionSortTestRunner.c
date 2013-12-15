@@ -74,6 +74,11 @@ int main(){
 		test_should_arrange_double_data_in_order();
 	tearDown();
 	testEnded();
+	testStarted("test_should_arrange_float_data_in_order");
+	setup();
+		test_should_arrange_float_data_in_order();
+	tearDown();
+	testEnded();
 	testStarted("test_should_arrange_char_data_in_order");
 	setup();
 		test_should_arrange_char_data_in_order();

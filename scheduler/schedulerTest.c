@@ -53,3 +53,5 @@ void test_insertProcess_should_insert_two_processes(){
 	ASSERT(start->length == 2);
 }
 
+void test insertProcess should sort and then insert the process
+
