@@ -1,17 +1,7 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
+#include "./include/doublyLinkedList.h"
 
-typedef struct Node{
-	void* data;
-	struct Node* next;
-}node;
-
-typedef struct {
-	node* top;
-	int length;
-}stack;
-
-typedef char string[50];
-stack* create();
-int push(stack*,void*data);
+list* create();
+int push(list* top, void* element);
+int pop(list* top);
+int isEmpty(list* top);

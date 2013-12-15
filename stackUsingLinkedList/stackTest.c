@@ -2,68 +2,170 @@
 #include "stack.h"
 
 //create setup, tearDown, fixtureSetup, fixtureTearDown methods if needed
-stack* stackPtr;
+
+list* top;
 
 void test_should_create_top_to_null(){
-	stackPtr = create();
-	ASSERT(stackPtr->length == 0);
-	ASSERT(stackPtr->top == NULL);
+	top = create();
+	ASSERT(top->head == NULL);
+	ASSERT(top->length == 0);
 }
 
-void test_push_should_push_an_int_element_to_stack(){
+void test_should_push_int_element_to_stack(){
 	int answer;
-	int element = 100;
-	stackPtr = create();
-	answer = push(stackPtr,&element);
-	ASSERT(answer == 1);
-	ASSERT(*(int*)stackPtr->top->data = 100);
+	int element = 20;
+	top = create();
+	answer = push(top,&element);
+	ASSERT(1 == answer);
+	ASSERT(*(int*)top->head->data == 20);
 }
 
-void test_push_should_push_a_float_element_to_stack(){
+void test_should_push_two_int_element_to_stack(){
 	int answer;
-	float element = 10.5;
-	stackPtr = create();
-	answer = push(stackPtr,&element);
-	ASSERT(answer == 1);
-	ASSERT(*(float*)stackPtr->top->data = 10.5);
+	int element = 20;
+	int element1 = 21;
+	top = create();
+	answer = push(top,&element);
+	answer = push(top,&element1);
+	ASSERT(1 == answer);
+	ASSERT(2 == top->length);
+	ASSERT(*(int*)top->head->data == 21);
+	ASSERT(*(int*)top->head->next->data == 20);
 }
 
-void test_push_should_push_a_char_element_to_stack(){
+void test_should_push_two_float_element_to_stack(){
+	int answer;
+	float element = 20.22;
+	float element1 = 21.2;
+	top = create();
+	answer = push(top,&element);
+	answer = push(top,&element1);
+	ASSERT(1 == answer);
+	ASSERT(2 == top->length);
+	ASSERT(*(float*)top->head->data == 21.2f);
+	ASSERT(*(float*)top->head->next->data == 20.22f);
+}
+
+void test_should_push_two_double_element_to_stack(){
+	int answer;
+	double element = 20.22;
+	double element1 = 21.2;
+	top = create();
+	answer = push(top,&element);
+	answer = push(top,&element1);
+	ASSERT(1 == answer);
+	ASSERT(2 == top->length);
+	ASSERT(*(double*)top->head->data == 21.2);
+	ASSERT(*(double*)top->head->next->data == 20.22);
+}
+
+void test_should_push_two_char_element_to_stack(){
 	int answer;
 	char element = 'a';
-	stackPtr = create();
-	answer = push(stackPtr,&element);
-	ASSERT(answer == 1);
-	ASSERT(*(char*)stackPtr->top->data = 'a');
+	char element1 = 'b';
+	top = create();
+	answer = push(top,&element);
+	answer = push(top,&element1);
+	ASSERT(1 == answer);
+	ASSERT(2 == top->length);
+	ASSERT(*(char*)top->head->data == 'b');
+	ASSERT(*(char*)top->head->next->data == 'a');
 }
 
-void test_push_should_push_a_double_element_to_stack(){
-	int answer;
-	double element = 19.321;
-	stackPtr = create();
-	answer = push(stackPtr,&element);
-	ASSERT(answer == 1);
-	ASSERT(*(double*)stackPtr->top->data = 19.321);
-}
-
-void test_push_should_push_a_string_element_to_stack(){
+void test_should_push_two_string_element_to_stack(){
 	int answer;
 	string element;
-	strcpy(element,"manish");
-	stackPtr = create();
-	answer = push(stackPtr,&element);
-	ASSERT(answer == 1);
-	ASSERT(strcmp(*(string*)stackPtr->top->data,"manish")==0);
+	string element1;
+	strcpy(element,"yogesh");
+	strcpy(element1,"manish");
+	top = create();
+	answer = push(top,&element);
+	answer = push(top,&element1);
+	ASSERT(1 == answer);
+	ASSERT(2 == top->length);
+	ASSERT(strcmp(*(string*)top->head->data,"manish")==0);
+	ASSERT(strcmp(*(string*)top->head->next->data ,"yogesh")==0);
 }
 
-void test_push_should_push_more_then_one_int_element_in_stack(){
+void test_should_pop_out_one_int_element_from_stack(){
 	int answer;
-	int element1 = 100;
-	int element2 = 200;
-	stackPtr = create();
-	answer = push(stackPtr,&element1);
-	answer = push(stackPtr,&element2);
-	ASSERT(answer == 1);
-	ASSERT(stackPtr->length == 2);
-	ASSERT(*(int*)stackPtr->top->data == 200);
+	int element = 20;
+	int element1 = 21;
+	top = create();
+	push(top,&element);
+	push(top,&element1);
+	answer = pop(top);
+	ASSERT(1 == answer);
+	ASSERT(1 == top->length);
+	ASSERT(*(int*)top->head->data == 20);
+}
+
+void test_should_pop_out_one_float_element_from_stack(){
+	int answer;
+	float element = 20.20;
+	float element1 = 21.99;
+	top = create();
+	push(top,&element);
+	push(top,&element1);
+	answer = pop(top);
+	ASSERT(1 == answer);
+	ASSERT(1 == top->length);
+	ASSERT(*(float*)top->head->data == 20.20f);
+}
+
+void test_should_pop_out_one_double_element_from_stack(){
+	int answer;
+	double element = 20.20;
+	double element1 = 21.99;
+	top = create();
+	push(top,&element);
+	push(top,&element1);
+	answer = pop(top);
+	ASSERT(1 == answer);
+	ASSERT(1 == top->length);
+	ASSERT(*(double*)top->head->data == 20.20);
+}
+
+void test_should_pop_out_one_char_element_from_stack(){
+	int answer;
+	char element = 'a';
+	char element1 = 'b';
+	top = create();
+	push(top,&element);
+	push(top,&element1);
+	answer = pop(top);
+	ASSERT(1 == answer);
+	ASSERT(1 == top->length);
+	ASSERT(*(char*)top->head->data == 'a');
+}
+
+void test_should_pop_out_one_string_element_from_stack(){
+	int answer;
+	string element;
+	string element1;
+	strcpy(element,"yogesh");
+	strcpy(element1,"manish");
+	top = create();
+	push(top,&element);
+	push(top,&element1);
+	answer = pop(top);
+	ASSERT(1 == answer);
+	ASSERT(1 == top->length);
+	ASSERT(strcmp(*(string*)top->head->data,"yogesh")==0);
+}
+
+void test_isEmpty_should_return_1_if_stack_is_empty(){
+	int answer;
+	top = create();
+	answer = isEmpty(top);
+	ASSERT(1 == answer);
+} 
+
+void test_isEmpty_should_return_0_if_stack_is_not_empty(){
+	int answer;
+	int element = 20;
+	top = create();
+	push(top,&element);
+	answer = isEmpty(top);
+	ASSERT(0 == answer);
 }
