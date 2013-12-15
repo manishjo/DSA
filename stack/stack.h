@@ -10,6 +10,7 @@ typedef struct{
 }Stack;
 
 typedef char string[256];
+
 Stack* create(int elementSize, int length);
 int push(Stack* s,void* element);
 void* pop(Stack* s);
