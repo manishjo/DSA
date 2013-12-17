@@ -5,3 +5,7 @@ int insertProcess(list *start ,int priority ,void *data){
         enqueue(start,priority,data);
         return 1;
 };
+
+int excuteProcess(list* start){
+	return 1;
+}

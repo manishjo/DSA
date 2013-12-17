@@ -3,6 +3,8 @@
 typedef struct 
 {
         int Time;
-        string processName;
+        char processName[20];
 }process;
+
 int insertProcess(list *,int ,void *);
+int excuteProcess(list* start);

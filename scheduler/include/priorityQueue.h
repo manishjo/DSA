@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef char string[20];
-
 typedef struct Node{
 	void *data;
 	int priority;
