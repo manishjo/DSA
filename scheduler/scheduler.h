@@ -1,3 +1,8 @@
 #include "./include/priorityQueue.h"
 
-int insertProcess(list* listPtr,void *data,int priority);
+typedef struct 
+{
+        int Time;
+        string processName;
+}process;
+int insertProcess(list *,int ,void *);

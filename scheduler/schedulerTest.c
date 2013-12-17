@@ -4,15 +4,14 @@
 
 list *start;
 
-void test_create_should_create_list(){
-	start= create();
-	ASSERT(start->head == NULL);
-	ASSERT(start->length==0);
+void test_create_should_create_start(){
+        start= create();
+        ASSERT(start->head == NULL);
+        ASSERT(start->length == 0);        
 };
-void test_insertProcess_should_insert_a_process(){
-	int answer;
-	int element = 200;
-	start= create();
-	answer = insertProcess(start,&element,3);
-	ASSERT(answer == 1);
-};
+void test_insert_process_in_insert_process(){
+        int result;
+        process Process = {20,"browser"};                
+        start= create();
+        result = insertProcess(start,3,&Process);
+};list *start;
