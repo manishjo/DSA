@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <memory.h>
+#include <stdlib.h>
 
 typedef struct Node{
 	void *data;
@@ -13,5 +15,5 @@ typedef struct{
 }list;
 
 list* create();
-int enqueue(list*,int priority,void* data);
-int dequeue(list*);
+int enqueue(list* start,int priority,void* data);
+int dequeue(list* start);

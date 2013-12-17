@@ -3,14 +3,14 @@
 #include <memory.h>
 
 typedef struct Node{
-	void *data;
-	struct Node* next;
-	struct Node* pre;
+        void *data;
+        struct Node* next;
+        struct Node* pre;
 }node;
 
 typedef struct{
-	node* head;
-	int length;
+        node* head;
+        int length;
 }list;
 
 list* create();
