@@ -12,18 +12,17 @@ int excuteProcess(list* start){
 	node* temp;
 	process* ongoingProcess;
 	temp = start->head;
-	while(processFinished != start->length){
-    	printf("\n helloooo \n");
+	while(processFinished <= start->length){
+		if(temp == NULL)
+			temp = start->head;
 		ongoingProcess = temp->data;
-		printf("\n-----------%d",ongoingProcess->Time);
 		if(ongoingProcess->Time <= 10){			
 			processFinished++;
-			ongoingProcess->lifeCycle +=1;			
+			ongoingProcess->lifeCycle +=1;	
 		}
 		ongoingProcess->Time -= 10;
 		ongoingProcess->lifeCycle += 1;
 		temp = temp->next;
-
 	}
 	return 1;
 }

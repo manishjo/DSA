@@ -37,6 +37,18 @@ void test_excuteProcess_should_excute_the_process(){
     result = insertProcess(start,3,&Process1);    
     result = insertProcess(start,5,&Process2);
     result = excuteProcess(start);
+    ASSERT(result == 1);
+}
 
+void test_excuteProcess_should_excute_three_process(){
+    int result;
+    process Process1 = {"browser",10}; 
+    process Process2 = {"vlc",20};
+    process Process3 = {"gcc",50};                             
+    start= create();
+    result = insertProcess(start,3,&Process1);    
+    result = insertProcess(start,5,&Process2);
+    result = insertProcess(start,1,&Process3);
+    result = excuteProcess(start);
     ASSERT(result == 1);
 }
