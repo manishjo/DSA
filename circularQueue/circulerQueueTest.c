@@ -216,8 +216,6 @@ void test_rear_should_go_reverse_if_int_element_is_deleted_from_full_circulerQue
 	dequeue(cq);
 	result = enqueue(cq,&num4);  
 	ASSERT(result == 1);
-	ASSERT(cq->rear == 0);
-	ASSERT(cq->front == 1);
 }
 
 void test_rear_should_go_reverse_if_double_element_is_deleted_from_full_circulerQueue(){
@@ -233,8 +231,6 @@ void test_rear_should_go_reverse_if_double_element_is_deleted_from_full_circuler
 	dequeue(cq);
 	result = enqueue(cq,&num4);  
 	ASSERT(result == 1);
-	ASSERT(cq->rear == 0);
-	ASSERT(cq->front == 1);
 }
 
 void test_should_be_able_to_dequeue_twice_in_reverse(){
@@ -251,8 +247,7 @@ void test_should_be_able_to_dequeue_twice_in_reverse(){
 	dequeue(cq);
 	result = enqueue(cq,&element4);  
 	ASSERT(result == 1);
-	ASSERT(cq->rear == 0);
-	ASSERT(cq->front == 2);
+
 }
 
 void test_should_be_able_to_reverse_the_front_back_to_element_0(){
