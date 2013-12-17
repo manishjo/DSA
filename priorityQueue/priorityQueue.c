@@ -1,7 +1,4 @@
 #include "priorityQueue.h"
-
-
-
 list* create(){
 	list* listPtr = (list*)calloc(sizeof(list),1);
 	return listPtr;
@@ -23,13 +20,13 @@ int insertFirst(node* nodePtr,node* temp,list* listPtr){
 	listPtr->head = nodePtr;
 	listPtr->length +=1;
 	return 1;
-}
+};
 
 int insertLast(node* temp,node* nodePtr,list* listPtr){
 	temp->next = nodePtr;
 	listPtr->length +=1;
 	return 1;	
-}
+};
 
 int enqueue(list* listPtr,int priority,void* data){
 	node* nodePtr = calloc(sizeof(node),1);
@@ -67,5 +64,5 @@ int dequeue(list* listPtr){
 	listPtr->head = temp;
 	listPtr->length -=1;
 		return 1;
-}
+};
 
