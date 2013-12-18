@@ -7,7 +7,7 @@
 List* start;
 
 void tearDown(){
-        free(start);
+    free(start);
 }
 
 void test_create_should_assign_null_to_head_and_0_to_length(){
@@ -39,15 +39,13 @@ void test_insert_should_insert_node_in_the_last_position(){
  	answer = insert(start,1,&element2);
  	answer = insert(start,3,&element2);
   	ASSERT(answer == 1);
-
 };
 
 void test_insert_should_return_0_when_index_is_more_than_required_index(){
 	int answer,element=10;
 	start = create();
 	answer = insert(start,5,&element);
-	ASSERT(answer==0);
-
+	ASSERT(answer==0);	
 };
 
 void test_insert_should_return_1_if_element_inserted_in_the_middle(){
@@ -58,7 +56,6 @@ void test_insert_should_return_1_if_element_inserted_in_the_middle(){
 	answer = insert(start,3,&element);
 	answer = insert(start,2,&element);
 	ASSERT(answer==1);
-
 };
 
 void test_Remove_should_delete_the_first_element(){

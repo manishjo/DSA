@@ -1,13 +1,10 @@
 typedef struct{
-	void *base;
-	int numberOfElements;
-	int elementSize;
+	void** data;
+	int numOfElements;
 	int top;
 }Stack;
 
-typedef char string[256];
-
-Stack* create(int elementSize, int length);
+Stack* create( int length);
 int push(Stack* s,void* element);
 void* pop(Stack* s);
 void* top(Stack* s);

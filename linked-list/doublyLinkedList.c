@@ -103,8 +103,8 @@ int insert(List* start , int index , void* data){
 }
 
 int Remove(List* start , int index){
-        Node* temp = createNode();
-        Node* temp2 = createNode();
+        Node* temp;
+        Node* temp2;
         if(start->head == NULL||index > start->length)
                 return 0;
         if(index == 1)
@@ -120,7 +120,7 @@ int length(List* start){
 
 int findIndex(List* start, void* element, int elementSize){
         int i;
-        Node* temp = createNode();
+        Node* temp;
         if(start->length == 0)
                 return 0;
         temp = start->head;
@@ -130,4 +130,16 @@ int findIndex(List* start, void* element, int elementSize){
                 temp=temp->next;
         }
         return 0;
+}
+
+void dispose(List* start){
+        Node* temp;
+        Node* temp2;
+        temp = start->head;
+        while(temp->next != NULL){
+                temp2 = temp;
+                temp = temp->next;
+                free(temp2);
+        }
+        free(temp);
 }

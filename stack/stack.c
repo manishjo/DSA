@@ -1,49 +1,48 @@
 #include "stack.h"
 #include <stdlib.h>
-#include <memory.h>
+#include <string.h>
 
-Stack* create(int elementSize, int length){
-	Stack* stack = calloc(1,sizeof(Stack));
-	stack->base = calloc(length, elementSize);
-	stack->numberOfElements = length;	
-	stack->top = -1;
-	stack->elementSize=elementSize;
-	return stack;	
+Stack* create(int length){
+	Stack* stackPtr = (Stack*)calloc(1,sizeof(Stack));
+	stackPtr->data = calloc(sizeof(void*),length);
+	stackPtr->numOfElements = length;
+	stackPtr->top = -1;
+	return stackPtr;
+};
+
+Stack* resizeStack(Stack* stackPtr){
+	stackPtr->data = realloc(stackPtr->data, stackPtr->numOfElements*2*sizeof(void*));
+	stackPtr->numOfElements=stackPtr->numOfElements*2;
+	return stackPtr;
 }
 
-Stack* resizeStack(Stack* stack){
-	stack->base = realloc(stack->base, stack->numberOfElements*2*stack->elementSize);
-	stack->numberOfElements=stack->numberOfElements*2;
-	return stack;
+int push(Stack* stackPtr,void* element){
+	void *temp;
+	if(isFull(stackPtr))
+		resizeStack(stackPtr);
+	*(stackPtr->data+(++stackPtr->top)) = element;
+	return 1;
 }
 
-int push(Stack* stack,void* element){
-	if(isFull(stack)==1)
-		resizeStack(stack);
-    memcpy(stack->base+stack->elementSize*++stack->top,element,stack->elementSize);
-    return 1;
+void* pop(Stack* stackPtr){
+	if(isEmpty(stackPtr)==1)
+	return NULL;
+    --stackPtr->top;
+    return  *(stackPtr->data+(stackPtr->top+1));
 }
 
-void* pop(Stack* stack){
-	if(isEmpty(stack)==1)
-		return NULL;
-    --stack->top;
-    return  stack->base+stack->elementSize*(stack->top+1);
-}
-
-void *top(Stack* stack){
-	return stack->base+stack->elementSize*stack->top;
-}
-
-int isEmpty(Stack* stack){
-	if(stack->top==-1)
+int isFull(Stack* stackPtr){
+	if(stackPtr->top==(stackPtr->numOfElements-1))
 		return 1;
 	return 0;
 }
 
-int isFull(Stack* stack){
-	if(stack->top==(stack->numberOfElements-1))
+int isEmpty(Stack* stackPtr){
+	if(stackPtr->top==-1)
 		return 1;
 	return 0;
 }
 
+void* top(Stack* stackPtr){
+	return  *(stackPtr->data+(stackPtr->top));
+}
