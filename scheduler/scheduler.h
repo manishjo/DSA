@@ -5,7 +5,7 @@ typedef struct
         char processName[20];
         int Time;
         int lifeCycle;
-}process;
+}Process;
 
 int insertProcess(list *start,int priority ,void * data);
 int excuteProcess(list* start);

@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <memory.h>
 
-queue* create(int elementSize, int length){
-	queue* myqueue = calloc(1,sizeof(queue));
+Queue* create(int elementSize, int length){
+	Queue* myqueue = calloc(1,sizeof(Queue));
 	myqueue->base = calloc(length,sizeof(elementSize));
 	myqueue->elementSize = elementSize;
 	myqueue->numberOfElements = length;
@@ -11,7 +11,7 @@ queue* create(int elementSize, int length){
 	return myqueue;
 }
 
-int enqueue(queue* myQueue,void* element){
+int enqueue(Queue* myQueue,void* element){
 	if(isFull(myQueue)==1)
 		return 0;
 	memmove(myQueue->base+myQueue->elementSize*++myQueue->rear,element, myQueue->elementSize);
@@ -20,7 +20,7 @@ int enqueue(queue* myQueue,void* element){
 	return 1;
 }
 
-void* dequeue(queue* myQueue){
+void* dequeue(Queue* myQueue){
 	int i;
 	void *deletedElement;
 	if(isEmpty(myQueue)==1)
@@ -34,13 +34,13 @@ void* dequeue(queue* myQueue){
 	return deletedElement;
 }
 
-int isEmpty(queue* myQueue){
+int isEmpty(Queue* myQueue){
 	if(myQueue->front==-1 || myQueue->rear == -1)
 		return 1;
 	return 0;
 }
 
-int isFull(queue* myQueue){
+int isFull(Queue* myQueue){
 	if(myQueue->front==0 && myQueue->rear == myQueue->numberOfElements-1)
 		return 1;
 	return 0;

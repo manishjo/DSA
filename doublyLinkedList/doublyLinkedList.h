@@ -1,16 +1,16 @@
-typedef struct Node{
+typedef struct node{
         void *data;
-        struct Node* next;
-        struct Node* pre;
-}node;
+        struct node* next;
+        struct node* pre;
+}Node;
 
 typedef struct{
-        node* head;
+        Node* head;
         int length;
-}list;
+}List;
 
-list* create();
-int insert(list* , int , void*);
-int Remove(list* , int index);
-int findIndex(list*, void*,int);
-int length(list*);
+List* create();
+int insert(List* , int , void*);
+int Remove(List* , int index);
+int findIndex(List*, void*,int);
+int length(List*);

@@ -7,13 +7,13 @@ typedef char string[256];
 
 //create setup, tearDown, fixtureSetup, fixtureTearDown methods if needed
 
-queue* myQueue;
+Queue* myQueue;
 
 void tearDown(){
         free(myQueue->base);
 }
 
-int areEqual(queue a, queue b){
+int areEqual(Queue a, Queue b){
     int result = a.front == b.front && a.rear == b.rear && a.numberOfElements == b.numberOfElements && a.elementSize == b.elementSize;
     if(!result) return result;
     return 0 == memcmp(a.base,b.base,a.numberOfElements*a.elementSize);
@@ -21,28 +21,28 @@ int areEqual(queue a, queue b){
 
 void test_should_create_a_int_queue(){
 	int arr[3]={0,0,0};
-	queue expected = {arr,3,sizeof(int),-1,-1};
+	Queue expected = {arr,3,sizeof(int),-1,-1};
 	myQueue = create(sizeof(int),3);
 	ASSERT(areEqual(*myQueue,expected));
 }
 
 void test_should_create_a_float_queue(){
 	float arr[3]={0,0,0};
-	queue expected = {arr,3,sizeof(float),-1,-1};
+	Queue expected = {arr,3,sizeof(float),-1,-1};
 	myQueue = create(sizeof(float),3);
 	ASSERT(areEqual(*myQueue,expected));
 }
 
 void test_should_create_a_char_queue(){
 	char arr[3]={'\0','\0','\0'};
-	queue expected = {arr,3,sizeof(char),-1,-1};
+	Queue expected = {arr,3,sizeof(char),-1,-1};
 	myQueue = create(sizeof(char),3);
 	ASSERT(areEqual(*myQueue,expected));
 }
 
 void test_should_create_string_queue(){
 	string arr[2]={"manish","yogesh"};
-	queue expected = {arr,2,sizeof(string),-1,-1};
+	Queue expected = {arr,2,sizeof(string),-1,-1};
 	myQueue = create(sizeof(string),2);
 	memcpy(myQueue->base, arr, 2*sizeof(string));
 	ASSERT(areEqual(*myQueue,expected));
@@ -51,7 +51,7 @@ void test_should_create_string_queue(){
 void test_should_enqueue_a_int_element_in_queue(){
 	int arr[1] = {10},result;
 	int element = 10;
-	queue expected = {arr,1,sizeof(int),0,0};
+	Queue expected = {arr,1,sizeof(int),0,0};
 	myQueue = create(sizeof(int),1);
 	result = enqueue(myQueue,&element);
 	ASSERT(areEqual(*myQueue,expected));
@@ -63,7 +63,7 @@ void test_should_enqueue_float_element_in_queue(){
 	int result;
 	float element1 = 10.1;
 	float element2 = 2.5;
-	queue expected = {arr,2,sizeof(float),0,1};
+	Queue expected = {arr,2,sizeof(float),0,1};
 	myQueue = create(sizeof(float),2);
 	result = enqueue(myQueue,&element1);
 	result = enqueue(myQueue,&element2);
@@ -76,7 +76,7 @@ void test_should_enqueue_char_element_in_queue(){
 	int result;
 	char element1 = 'a';
 	char element2 = 'y';
-	queue expected = {arr,2,sizeof(char),0,1};
+	Queue expected = {arr,2,sizeof(char),0,1};
 	myQueue = create(sizeof(char),2);
 	result = enqueue(myQueue,&element1);
 	result = enqueue(myQueue,&element2);
@@ -89,7 +89,7 @@ void test_should_enqueue_string_in_queue(){
 	int result;
 	string element1 = "dubey";
 	string element2 = "tiwari";
-	queue expected = {arr,2,sizeof(string),0,1};
+	Queue expected = {arr,2,sizeof(string),0,1};
 	myQueue = create(sizeof(string),2);
 	result = enqueue(myQueue,&element1);
 	result = enqueue(myQueue,&element2);

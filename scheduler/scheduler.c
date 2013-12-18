@@ -2,7 +2,7 @@
 #include "scheduler.h"
         
 int insertProcess(list *start ,int priority ,void *data){
-        process *processPtr;int Time;
+        Process *processPtr;int Time;
         enqueue(start,priority,data);
         return 1;
 };
@@ -11,7 +11,7 @@ int excuteProcess(list* start){
 	int processFinished = 0;
 	int index = 0;
 	node* temp;
-	process* ongoingProcess;
+	Process* ongoingProcess;
 	temp = start->head;
 	while(processFinished <= start->length){
 		if(temp == NULL){

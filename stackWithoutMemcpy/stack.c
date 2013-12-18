@@ -2,21 +2,21 @@
 #include <stdlib.h>
 #include <string.h>
 
-stack* create(int length){
-	stack* stackPtr = (stack*)calloc(1,sizeof(stack));
+Stack* create(int length){
+	Stack* stackPtr = (Stack*)calloc(1,sizeof(Stack));
 	stackPtr->data = calloc(sizeof(void*),length);
 	stackPtr->numOfElements = length;
 	stackPtr->top = -1;
 	return stackPtr;
 };
 
-stack* resizeStack(stack* stackPtr){
+Stack* resizeStack(Stack* stackPtr){
 	stackPtr->data = realloc(stackPtr->data, stackPtr->numOfElements*2*sizeof(void*));
 	stackPtr->numOfElements=stackPtr->numOfElements*2;
 	return stackPtr;
 }
 
-int push(stack* stackPtr,void* element){
+int push(Stack* stackPtr,void* element){
 	void *temp;
 	if(isFull(stackPtr))
 		resizeStack(stackPtr);
@@ -24,25 +24,25 @@ int push(stack* stackPtr,void* element){
 	return 1;
 }
 
-void* pop(stack* stackPtr){
+void* pop(Stack* stackPtr){
 	if(isEmpty(stackPtr)==1)
 	return NULL;
     --stackPtr->top;
     return  *(stackPtr->data+(stackPtr->top+1));
 }
 
-int isFull(stack* stackPtr){
+int isFull(Stack* stackPtr){
 	if(stackPtr->top==(stackPtr->numOfElements-1))
 		return 1;
 	return 0;
 }
 
-int isEmpty(stack* stackPtr){
+int isEmpty(Stack* stackPtr){
 	if(stackPtr->top==-1)
 		return 1;
 	return 0;
 }
 
-void* top(stack* stackPtr){
+void* top(Stack* stackPtr){
 	return  *(stackPtr->data+(stackPtr->top));
 }

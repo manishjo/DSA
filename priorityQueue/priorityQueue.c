@@ -5,35 +5,35 @@ list* create(){
 	list* listPtr = (list*)calloc(sizeof(list),1);
 	return listPtr;
 };
-void createNode(node *temp,void* data,int priority){
+void createNode(Node *temp,void* data,int priority){
 	temp->data = data;
 	temp->priority = priority;
 };
 
-int createFirstNode(node* nodePtr,list* listPtr,void* data,int priority){
+int createFirstNode(Node* nodePtr,list* listPtr,void* data,int priority){
 	createNode(nodePtr,data,priority);
 	listPtr->head = nodePtr;
 	listPtr->length +=1;
 	return 1;
 }
 
-int insertFirst(node* nodePtr,node* temp,list* listPtr){
+int insertFirst(Node* nodePtr,Node* temp,list* listPtr){
 	nodePtr->next = temp;
 	listPtr->head = nodePtr;
 	listPtr->length +=1;
 	return 1;
 };
 
-int insertLast(node* temp,node* nodePtr,list* listPtr){
+int insertLast(Node* temp,Node* nodePtr,list* listPtr){
 	temp->next = nodePtr;
 	listPtr->length +=1;
 	return 1;	
 };
 
 int enqueue(list* listPtr,int priority,void* data){
-	node* nodePtr = calloc(sizeof(node),1);
-	node *temp=calloc(sizeof(node),1);
-	node *temp2=calloc(sizeof(node),1);
+	Node* nodePtr = calloc(sizeof(Node),1);
+	Node *temp=calloc(sizeof(Node),1);
+	Node *temp2=calloc(sizeof(Node),1);
 	if(listPtr->length == 0){
 		return createFirstNode(nodePtr,listPtr,data,priority);
 	}
@@ -59,7 +59,7 @@ int enqueue(list* listPtr,int priority,void* data){
 }
 
 int dequeue(list* listPtr){
-	node *temp=calloc(sizeof(node),1);
+	Node *temp=calloc(sizeof(Node),1);
 	if(listPtr->length == 0)
 		return 0;
 	temp = listPtr->head->next;

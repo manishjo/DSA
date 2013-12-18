@@ -4,8 +4,7 @@
 #include "doublyLinkedList.h"
 
 //create setup, tearDown, fixtureSetup, fixtureTearDown methods if needed
-list* start;
-
+List* start;
 
 void tearDown(){
         free(start);

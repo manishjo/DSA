@@ -1,10 +1,16 @@
 #include "testUtils.h"
 #include "stack.h"
 #include <string.h>
+#include <stdlib.h>
 
 //create setup, tearDown, fixtureSetup, fixtureTearDown methods if needed
+typedef char string[20];
 
 stack* stackPtr;
+
+void tearDown(){
+	free(stackPtr);
+}
 
 void test_should_push_a_int_element_in_the_stack(){
 	int answer;

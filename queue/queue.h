@@ -4,10 +4,10 @@ typedef struct{
 	int elementSize;
 	int front;
 	int rear;
-}queue;
+}Queue;
 
-queue* create(int elementSize, int length);
-int enqueue(queue* q,void* element);
-void* dequeue(queue* q);
-int isEmpty(queue* q);
-int isFull(queue* q);
+Queue* create(int elementSize, int length);
+int enqueue(Queue* q,void* element);
+void* dequeue(Queue* q);
+int isEmpty(Queue* q);
+int isFull(Queue* q);

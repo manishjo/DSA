@@ -1,11 +1,11 @@
-typedef struct Node{
+typedef struct node{
 	void *data;
 	int priority;
-	struct Node* next;
-}node;
+	struct node* next;
+}Node;
 
 typedef struct{
-	node* head;
+	Node* head;
 	int length;
 }list;
 
