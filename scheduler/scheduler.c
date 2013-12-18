@@ -7,12 +7,10 @@ int insertProcess(list *start ,int priority ,void *data){
         return 1;
 };
 
-int excuteProcess(list* start){
+void finishProcess(node* temp,list* start){
 	int processFinished = 0;
 	int index = 0;
-	node* temp;
 	Process* ongoingProcess;
-	temp = start->head;
 	while(processFinished <= start->length){
 		if(temp == NULL){
 			temp = start->head;
@@ -23,12 +21,18 @@ int excuteProcess(list* start){
 			processFinished++;
 			ongoingProcess->lifeCycle +=1;	
 			index++;
-			
 		}
 		ongoingProcess->Time -= 10;
 		ongoingProcess->lifeCycle += 1;
 		index++;
 		temp = temp->next;
 	}
+}
+int excuteProcess(list* start){
+	node* temp;
+	temp = start->head;
+	if(start->length == 0)
+		return 0;
+	finishProcess(temp,start);
 	return 1;
 }

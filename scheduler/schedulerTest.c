@@ -56,3 +56,10 @@ void test_excuteProcess_should_excute_five_process(){
     result = excuteProcess(start);
     ASSERT(result == 1);
 }
+
+void test_excuteProcess_should_return_0_if_no_process_is_inserted(){
+    int result;                                                
+    start= create();
+    result = excuteProcess(start);
+    ASSERT(result == 0);
+}
