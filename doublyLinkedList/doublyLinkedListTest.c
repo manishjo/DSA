@@ -1,4 +1,5 @@
 #include <memory.h>
+#include <stdlib.h>
 #include "testUtils.h"
 #include "doublyLinkedList.h"
 

@@ -1,4 +1,6 @@
 #include "insertionSort.h"
+#include <memory.h>
+#include <stdlib.h>
 
 void isort(void* base, size_t numberOfElements, size_t elementSize,compare comp) {
     int i, j;

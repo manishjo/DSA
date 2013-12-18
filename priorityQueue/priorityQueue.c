@@ -1,4 +1,6 @@
 #include "priorityQueue.h"
+#include <stdlib.h>
+
 list* create(){
 	list* listPtr = (list*)calloc(sizeof(list),1);
 	return listPtr;

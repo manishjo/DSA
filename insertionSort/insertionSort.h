@@ -1,11 +1,6 @@
-#include <stdio.h>
 #include <stdlib.h>
-#include <memory.h>
-
-typedef char string[20];
-
 typedef struct {
-	string name;
+	char name[20];
 	int accountNumber;
 	float balance;
 } Account;

@@ -40,15 +40,19 @@ void test_excuteProcess_should_excute_the_process(){
     ASSERT(result == 1);
 }
 
-void test_excuteProcess_should_excute_three_process(){
+void test_excuteProcess_should_excute_five_process(){
     int result;
     process Process1 = {"browser",10}; 
     process Process2 = {"vlc",20};
-    process Process3 = {"gcc",50};                             
+    process Process3 = {"gcc",50};        
+    process Process4 = {"subline",5};                             
+    process Process5 = {"crome",45};                                                  
     start= create();
     result = insertProcess(start,3,&Process1);    
     result = insertProcess(start,5,&Process2);
     result = insertProcess(start,1,&Process3);
+    result = insertProcess(start,10,&Process4);
+    result = insertProcess(start,2,&Process5);
     result = excuteProcess(start);
     ASSERT(result == 1);
 }

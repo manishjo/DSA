@@ -1,5 +1,7 @@
 #include "testUtils.h"
 #include "insertionSort.h"
+typedef char string[20];
+
 
 //create setup, tearDown, fixtureSetup, fixtureTearDown methods if needed
 

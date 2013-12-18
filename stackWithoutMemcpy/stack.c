@@ -1,4 +1,6 @@
 #include "stack.h"
+#include <stdlib.h>
+#include <string.h>
 
 stack* create(int length){
 	stack* stackPtr = (stack*)calloc(1,sizeof(stack));

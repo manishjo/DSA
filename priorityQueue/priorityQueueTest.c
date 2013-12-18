@@ -1,5 +1,6 @@
 #include "testUtils.h"
 #include "priorityQueue.h"
+#include <stdlib.h>
 
 //create setup, tearDown, fixtureSetup, fixtureTearDown methods if needed
 

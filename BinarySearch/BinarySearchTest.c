@@ -1,5 +1,7 @@
 #include "testUtils.h"
 #include "BinarySearch.h"
+#include <string.h>
+
 
 //create setup, tearDown, fixtureSetup, fixtureTearDown methods if needed
 

@@ -1,5 +1,7 @@
 #include "testUtils.h"
 #include "stack.h"
+#include <stdlib.h>
+#include <memory.h>
 
 //create setup, tearDown, fixtureSetup, fixtureTearDown methods if needed
 Stack *stack;

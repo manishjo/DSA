@@ -1,5 +1,9 @@
 #include "testUtils.h"
 #include "queue.h"
+#include <string.h>
+#include <stdlib.h>
+
+typedef char string[256];
 
 //create setup, tearDown, fixtureSetup, fixtureTearDown methods if needed
 

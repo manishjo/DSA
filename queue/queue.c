@@ -1,4 +1,6 @@
 #include "queue.h"
+#include <stdlib.h>
+#include <memory.h>
 
 queue* create(int elementSize, int length){
 	queue* myqueue = calloc(1,sizeof(queue));
