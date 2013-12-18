@@ -1,4 +1,3 @@
-
 #include "scheduler.h"
         
 int insertProcess(list *start ,int priority ,void *data){
@@ -12,7 +11,7 @@ void finishProcess(node* temp,list* start){
 	int index = 0;
 	Process* ongoingProcess;
 	while(processFinished <= start->length){
-		if(temp == NULL){
+		if(temp->next == NULL){
 			temp = start->head;
 			index = 0;			
 		}
