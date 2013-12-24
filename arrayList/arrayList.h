@@ -4,6 +4,13 @@ typedef struct {
 	int length;
 } ArrayList;
 
+typedef struct iterator{
+	int (*hasNext)(struct iterator* it);
+	void* (*next)(struct iterator* it);
+	ArrayList* list;
+	int currentPosition;
+}Iterator;
+
 ArrayList create(int capacity);
 
 typedef int (*compare)(void* first, void* second);
@@ -18,4 +25,9 @@ int remove(ArrayList* list, int index);
 
 int add(ArrayList* list, void* data);
 
-int search(ArrayList* list, void*data, compare comp);
+int search(ArrayList* list, void*data, compare compareFunc);
+
+Iterator* getIterator(ArrayList* list);
+
+
+

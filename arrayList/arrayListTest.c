@@ -1,7 +1,7 @@
 #include <stdlib.h>
-
 #include "testUtils.h"
 #include "arrayList.h"
+#include <stdlib.h>
 
 const int SUCCESS = 1;
 const int FAILURE = 0;
@@ -115,11 +115,17 @@ void test_add_should_insert_at_last(){
 
 int compareId(void* first,void* second){
 	Intern firstIntern = *(Intern*)first;
-	Intern secondIntern = *(Intern*)second;
-	return firstIntern.id == secondIntern.id;
+	int secondIntern = *(int*)second;
+	return firstIntern.id == secondIntern;
 }
 
-void test_search_should_search_the_element(){
+int compareAge(void* first,void* second){
+	Intern firstIntern = *(Intern*)first;
+	int secondIntern = *(int*)second;
+	return firstIntern.age == secondIntern;
+}
+
+void test_search_should_search_the_id(){
 	int id = 15398;
 	int answer;
 	insert(internsPtr, 0, &prateek);
@@ -128,4 +134,82 @@ void test_search_should_search_the_element(){
 	answer = search(internsPtr,&id,compareId);
 	ASSERT(answer == 2);
 }
+void test_search_should_not_give_id_index_if_not_found(){
+	int id = 16398;
+	int answer;
+	insert(internsPtr, 0, &prateek);
+	insert(internsPtr,1,&md);
+	insert(internsPtr,2,&manish);
+	answer = search(internsPtr,&id,compareId);
+	ASSERT(answer == -1);
+}
+
+void test_search_should_search_the_age(){
+	int age = 17;
+	int answer;
+	insert(internsPtr, 0, &prateek);
+	insert(internsPtr,1,&md);
+	insert(internsPtr,2,&manish);
+	answer = search(internsPtr,&age,compareAge);
+	ASSERT(answer == 1);
+} 
+
+void test_search_should_not_give_index_if_age_not_found(){
+	int age = 173;
+	int answer;
+	insert(internsPtr, 0, &prateek);
+	insert(internsPtr,1,&md);
+	insert(internsPtr,2,&manish);
+	answer = search(internsPtr,&age,compareAge);
+	ASSERT(answer == -1);
+}
+
+void test_getIterator_should_return_a_Iterator(){
+	Iterator *iterator;
+	insert(internsPtr, 0, &prateek);
+	insert(internsPtr,1,&md);
+	insert(internsPtr,2,&manish);
+	iterator = getIterator(internsPtr);
+	ASSERT(-1 == iterator->currentPosition); 
+}
+
+void test_getIterator_next_should_give_first_data(){
+	Iterator* iterator;
+	Intern* info;
+	insert(internsPtr, 0, &prateek);
+	insert(internsPtr,1,&md);
+	insert(internsPtr,2,&manish);
+	iterator = getIterator(internsPtr);
+	info = (Intern*)iterator->next(iterator);
+	ASSERT(18 == info->age);
+} 
+
+void test_getIterator_next_should_give_2nd_data(){
+	Iterator* iterator;
+	Intern* info;
+	insert(internsPtr, 0, &prateek);
+	insert(internsPtr,1,&md);
+	insert(internsPtr,2,&manish);
+	iterator = getIterator(internsPtr);
+	info = (Intern*)iterator->next(iterator);
+	ASSERT(18 == info->age);
+	info = (Intern*)iterator->next(iterator);
+	ASSERT(17 == info->age);
+} 
+
+// void test_getIterator_next_should_not_give_data_if_there_is_no_data(){
+// 	Iterator* iterator;
+// 	void* info;
+// 	insert(internsPtr, 0, &prateek);
+// 	insert(internsPtr,1,&md);
+// 	insert(internsPtr,2,&manish);
+// 	iterator = getIterator(internsPtr);
+// 	info = (Intern*)iterator->next(iterator);
+// 	info = (Intern*)iterator->next(iterator);
+// 	info = (Intern*)iterator->next(iterator);
+// 	info = iterator->next(iterator);
+// printf("%d\n",info->age );
+// 	ASSERT(info == NULL);
+// }
+
 

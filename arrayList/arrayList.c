@@ -77,7 +77,30 @@ int search(ArrayList* list, void*data, compare compareFunc){
 		if(1==compareFunc(list->base[i],data))
 			return i;
 	}
-	return 0;
+	return -1;
+}
+
+int hasNext(Iterator* iterator){
+	if(iterator->list->length == iterator->currentPosition)
+		return 0;
+	return 1;
+}
+
+void* next(Iterator* iterator){
+	int i;
+	if(hasNext(iterator) == 0)return NULL;
+	++iterator->currentPosition;
+	return iterator->list->base[iterator->currentPosition];
+
+}
+
+Iterator* getIterator(ArrayList* list){
+	Iterator *iterator = (Iterator*)calloc(1,sizeof(Iterator));
+	iterator->currentPosition = -1;
+	iterator->hasNext = hasNext;
+	iterator->list = list;
+	iterator->next = next;
+	return iterator;
 }
 
 void dispose(ArrayList *list) {
