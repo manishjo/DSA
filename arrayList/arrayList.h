@@ -29,5 +29,9 @@ int search(ArrayList* list, void*data, compare compareFunc);
 
 Iterator* getIterator(ArrayList* list);
 
+int hasNext(Iterator* iterator);
+
+void* next(Iterator* iterator);
+
 
 

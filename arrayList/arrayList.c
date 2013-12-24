@@ -81,7 +81,7 @@ int search(ArrayList* list, void*data, compare compareFunc){
 }
 
 int hasNext(Iterator* iterator){
-	if(iterator->list->length == iterator->currentPosition)
+	if(iterator->list->length-1 == iterator->currentPosition)
 		return 0;
 	return 1;
 }

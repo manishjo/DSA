@@ -139,6 +139,16 @@ int main(){
 		test_getIterator_next_should_give_2nd_data();
 	tearDown();
 	testEnded();
+	testStarted("test_getIterator_next_should_not_give_data_if_there_is_no_data");
+	setup();
+		test_getIterator_next_should_not_give_data_if_there_is_no_data();
+	tearDown();
+	testEnded();
+	testStarted("test_getIterator_hasNext_should_tell_there_is_a_node");
+	setup();
+		test_getIterator_hasNext_should_tell_there_is_a_node();
+	tearDown();
+	testEnded();
 
 	summarizeTestCount();
 	fixtureTearDown();

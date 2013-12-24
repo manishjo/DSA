@@ -197,19 +197,26 @@ void test_getIterator_next_should_give_2nd_data(){
 	ASSERT(17 == info->age);
 } 
 
-// void test_getIterator_next_should_not_give_data_if_there_is_no_data(){
-// 	Iterator* iterator;
-// 	void* info;
-// 	insert(internsPtr, 0, &prateek);
-// 	insert(internsPtr,1,&md);
-// 	insert(internsPtr,2,&manish);
-// 	iterator = getIterator(internsPtr);
-// 	info = (Intern*)iterator->next(iterator);
-// 	info = (Intern*)iterator->next(iterator);
-// 	info = (Intern*)iterator->next(iterator);
-// 	info = iterator->next(iterator);
-// printf("%d\n",info->age );
-// 	ASSERT(info == NULL);
-// }
+void test_getIterator_next_should_not_give_data_if_there_is_no_data(){
+	Iterator* iterator;
+	Intern* info;
+	insert(internsPtr, 0, &prateek);
+	iterator = getIterator(internsPtr);
+	info = (Intern*)iterator->next(iterator);
+	ASSERT(18 == info->age);
+	info = (Intern*)iterator->next(iterator);
+	ASSERT(info == NULL);
+}
+
+void test_getIterator_hasNext_should_tell_there_is_a_node(){
+	Iterator* iterator;
+	int answer;
+	insert(internsPtr,0,&prateek);
+	insert(internsPtr,1,&manish);
+	insert(internsPtr,1,&md);
+	iterator = getIterator(internsPtr);
+	answer = hasNext(iterator);
+	ASSERT(1==answer);
+}
 
 
