@@ -1,5 +1,7 @@
 #include "../linked-list/doublyLinkedList.h"
 
+typedef int compareFunc (void* frist, void* second);
+
 typedef struct TreeNode{
 	void* data;
 	struct TreeNode* parent;
@@ -8,8 +10,8 @@ typedef struct TreeNode{
 
 typedef struct {
 	TreeNode* root;
-	int depth;
+	compareFunc *compare;
 } Tree;
 
-Tree createTree();
+Tree createTree(compareFunc* compare);
 int insertNode(Tree* tree, void* parentData, void* dataToInsert );

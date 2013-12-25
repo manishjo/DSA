@@ -132,6 +132,33 @@ int findIndex(List* start, void* element, int elementSize){
         return 0;
 }
 
+int hasNext(Iterator* iterator){
+        if(iterator->list->length == iterator->currentPosition)
+                return 0;
+        return 1;
+}
+
+void* next(Iterator* iterator){
+        int count = 0;
+        Node* temp = iterator->list->head;
+        if(hasNext(iterator) == 0)return NULL;
+        for(count=0;count<=iterator->currentPosition-1;count++){
+                temp = temp->next;
+        }
+        ++iterator->currentPosition;
+        return temp->data;
+}
+
+Iterator* getIterator(List* list){
+        Iterator* iterator = (Iterator*)calloc(sizeof(Iterator),1);
+        iterator->currentPosition = 0;
+        iterator->list = list;
+        iterator->hasNext = hasNext;
+        iterator->next =  next;
+        return iterator;
+
+}
+
 void dispose(List* start){
         Node* temp;
         Node* temp2;

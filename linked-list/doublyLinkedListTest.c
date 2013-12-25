@@ -133,3 +133,91 @@ void test_findIndex_should_return_0_if_element_not_found(){
 	answer = findIndex(start,&element4,sizeof(int));
 	ASSERT(answer == 0);	
 }
+
+void test_getIterator_should_make_a_iterator(){
+	int element = 190;
+	int element2 = 200;
+	int element3 = 200;
+	Iterator* iterator;	
+	start = create();
+	insert(start,1,&element);
+	insert(start,2,&element2);
+	insert(start,3,&element3);
+	iterator = getIterator(start);
+	ASSERT(0 == iterator->currentPosition);
+}
+
+void test_next_should_give_first_value(){
+	int element = 190;
+	int element2 = 200;
+	int element3 = 200;
+	Iterator* iterator;	
+	int *answer;
+	start = create();
+	insert(start,1,&element);
+	insert(start,2,&element2);
+	insert(start,3,&element3);
+	iterator = getIterator(start);
+	answer = iterator->next(iterator);
+	ASSERT(190 == *answer);
+}
+
+void test_hasNext_should_tell_that_it_has_next_value(){
+	int element = 190;
+	int element2 = 200;
+	int element3 = 200;
+	Iterator* iterator;	
+	int answer;
+	start = create();
+	insert(start,1,&element);
+	insert(start,2,&element2);
+	insert(start,3,&element3);
+	iterator = getIterator(start);
+	answer = iterator->hasNext(iterator);
+	ASSERT(1 == answer);
+}
+
+void test_hasNext_should_tell_that_it_does_not_have_next_value_(){
+	int element = 190;
+	Iterator* iterator;	
+	int answer;
+	start = create();
+	insert(start,1,&element);
+	iterator = getIterator(start);
+	answer = iterator->hasNext(iterator);
+	iterator->currentPosition++;
+	answer = iterator->hasNext(iterator);
+	ASSERT(0 == answer);
+}
+
+void test_next_should_give_each_element_one_by_one(){
+	int element = 190;
+	int element2 = 200;
+	int element3 = 210;
+	Iterator* iterator;	
+	int *answer;
+	start = create();
+	insert(start,1,&element);
+	insert(start,2,&element2);
+	insert(start,3,&element3);
+	iterator = getIterator(start);
+	answer = iterator->next(iterator);
+	ASSERT(190 == *answer);
+	answer = iterator->next(iterator);
+	ASSERT(200 == *answer);
+	answer = iterator->next(iterator);
+	ASSERT(210 == *answer);
+}
+
+void test_next_should_give_null_if_there_is_no_data(){
+	int element = 190;
+	Iterator* iterator;	
+	int *answer;
+	start = create();
+	insert(start,1,&element);
+	iterator = getIterator(start);
+	answer = iterator->next(iterator);
+	ASSERT(190 == *answer);
+	answer = iterator->next(iterator);
+	ASSERT(NULL == answer);
+}

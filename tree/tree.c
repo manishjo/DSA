@@ -2,10 +2,10 @@
 #include <stdlib.h>
 
 
-Tree createTree(){
+Tree createTree(compareFunc* compare){
 	Tree tree;
-	tree.depth = 0;
 	tree.root = NULL;
+	tree.compare =  compare;
 	return tree;
 }
 
