@@ -1,4 +1,4 @@
-#include "../linked-list/doublyLinkedList.h"
+#include "./include/doublyLinkedList.h"
 
 typedef int compareFunc (void* frist, void* second);
 

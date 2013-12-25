@@ -64,6 +64,16 @@ int main(){
 		test_to_create_tree_and_insert_root_with_an_float_data();
 	tearDown();
 	testEnded();
+	testStarted("test_insert_should_insert_a_child_to_root_node");
+	setup();
+		test_insert_should_insert_a_child_to_root_node();
+	tearDown();
+	testEnded();
+	testStarted("test_insert_should_insert_two_children_to_root_node");
+	setup();
+		test_insert_should_insert_two_children_to_root_node();
+	tearDown();
+	testEnded();
 
 	summarizeTestCount();
 	fixtureTearDown();

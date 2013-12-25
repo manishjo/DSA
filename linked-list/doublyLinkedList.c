@@ -95,9 +95,9 @@ int insert(List* start , int index , void* data){
         if(index > start->length+1) return 0;
         if(start->head == NULL && index == 1)
                 return insertFirst(nodePtr,data,start);
-        else if(index == 1)
+        if(index == 1)
                 return insertOnFirst(nodePtr,data,start); 
-        else if(index == start->length+1)
+        if(index == start->length+1)
                 return insertLast(nodePtr,data,start,temp); 
         return insertMiddle(nodePtr,data,start,temp,temp2,index);
 }

@@ -7,21 +7,31 @@ Tree createTree(compareFunc* compare){
 	tree.root = NULL;
 	tree.compare =  compare;
 	return tree;
-}
+};
 
-TreeNode* getNode(void *dataToInsert){
+TreeNode* getNode(TreeNode* parentNode,void *dataToInsert){
 	TreeNode* node = calloc(1, sizeof(TreeNode));
-	node->children = NULL;
+	node->children = create();
 	node->data = dataToInsert;
-	node->parent = NULL;
+	node->parent = parentNode;
 	return node;
-}
+};
+
+TreeNode* searchParent(Tree* tree,void* parentData){
+	if(1==tree->compare(tree->root->data,parentData))
+		return tree->root;
+	return NULL;
+};
 
 int insertNode(Tree* tree, void* parentData, void* dataToInsert ){
+	TreeNode* parentNode;
+	TreeNode* childNode;
 	if(parentData == NULL){
-		tree->root = getNode(dataToInsert);
+		tree->root = getNode(parentData,dataToInsert);
 		return 1;
-	}
-
+	};
+	parentNode = searchParent(tree,parentData);
+	childNode = getNode(parentNode,dataToInsert);
+	return insert(parentNode->children,1,childNode);
 	return 1;
-}
+};
