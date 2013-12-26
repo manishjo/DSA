@@ -51,3 +51,34 @@ void test_insert_should_insert_two_children_to_root_node(){
 	res = insertNode(&tree, &parent_data,&child2);
 	ASSERT(res == 1);
 }
+
+void test_insert_should_insert_children_to_a_children_node(){
+	Tree tree = createTree(compareIntData);
+	int res;
+	int data = 3;
+	int child1 = 4;
+	int child12 = 5;
+	res = insertNode(&tree, NULL, &data);
+	res = insertNode(&tree, &data , &child1);
+	res = insertNode(&tree, &child1 , &child12);
+	ASSERT(res == 1);
+}
+
+void test_insert_should_insert_2_childrens_to_a_children_node(){
+	Tree tree = createTree(compareIntData);
+	int res;
+	int data = 3;
+	int child1 = 4;
+	int child12 = 5;
+	int child13 = 6;
+	res = insertNode(&tree, NULL, &data);
+	res = insertNode(&tree, &data , &child1);
+	res = insertNode(&tree, &child1 , &child12);
+	res = insertNode(&tree,&child1,&child13);
+	ASSERT(res == 1);
+}
+
+
+
+
+

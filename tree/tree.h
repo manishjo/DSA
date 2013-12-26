@@ -2,14 +2,8 @@
 
 typedef int compareFunc (void* frist, void* second);
 
-typedef struct TreeNode{
-	void* data;
-	struct TreeNode* parent;
-	List* children;
-} TreeNode;
-
 typedef struct {
-	TreeNode* root;
+	void* root;
 	compareFunc *compare;
 } Tree;
 

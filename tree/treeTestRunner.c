@@ -74,6 +74,16 @@ int main(){
 		test_insert_should_insert_two_children_to_root_node();
 	tearDown();
 	testEnded();
+	testStarted("test_insert_should_insert_children_to_a_children_node");
+	setup();
+		test_insert_should_insert_children_to_a_children_node();
+	tearDown();
+	testEnded();
+	testStarted("test_insert_should_insert_2_childrens_to_a_children_node");
+	setup();
+		test_insert_should_insert_2_childrens_to_a_children_node();
+	tearDown();
+	testEnded();
 
 	summarizeTestCount();
 	fixtureTearDown();

@@ -1,6 +1,12 @@
+
 #include "tree.h"
 #include <stdlib.h>
 
+typedef struct TreeNode{
+	void* data;
+	struct TreeNode* parent;
+	List* children;
+} TreeNode;
 
 Tree createTree(compareFunc* compare){
 	Tree tree;
@@ -17,10 +23,26 @@ TreeNode* getNode(TreeNode* parentNode,void *dataToInsert){
 	return node;
 };
 
+TreeNode* compareNodes(List* list, compareFunc* compareFunc, void* parentData){
+    Iterator* iterator = getIterator(list);
+    List* tempList = create();
+    TreeNode *pNode;
+    while(iterator->hasNext(iterator)){
+        pNode = (TreeNode*)iterator->next(iterator);
+        if(compareFunc(pNode->data,parentData))
+                return pNode;
+    }
+    return NULL;
+};
+
 TreeNode* searchParent(Tree* tree,void* parentData){
-	if(1==tree->compare(tree->root->data,parentData))
-		return tree->root;
-	return NULL;
+	TreeNode* parent;
+ 	TreeNode* root = tree->root;
+    if(NULL == parentData || NULL == root)
+        return NULL;
+    if(tree->compare(root->data, parentData)) return root;
+    parent = compareNodes(root->children, tree->compare, parentData);
+    return parent;
 };
 
 int insertNode(Tree* tree, void* parentData, void* dataToInsert ){
@@ -31,6 +53,7 @@ int insertNode(Tree* tree, void* parentData, void* dataToInsert ){
 		return 1;
 	};
 	parentNode = searchParent(tree,parentData);
+	if(parentNode == NULL) return 0;
 	childNode = getNode(parentNode,dataToInsert);
 	return insert(parentNode->children,1,childNode);
 	return 1;
