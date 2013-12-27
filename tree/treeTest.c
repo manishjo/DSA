@@ -78,6 +78,18 @@ void test_insert_should_insert_2_childrens_to_a_children_node(){
 	ASSERT(res == 1);
 }
 
+void test_insert_should_insert_children_to_any_child(){
+	Tree tree = createTree(compareIntData);
+	int data[10]={1,2,3,4,5,6,7,8,9,10};
+	int res;
+	res = insertNode(&tree, NULL, &data[0]);
+	res = insertNode(&tree, &data[0] ,&data[1]);
+	res = insertNode(&tree, &data[1] ,&data[2]);
+	res = insertNode(&tree,&data[2],&data[3]);
+	res = insertNode(&tree,&data[3],&data[4]);
+	res = insertNode(&tree,&data[4],&data[5]);
+	ASSERT(res == 1);
+}
 
 
 
