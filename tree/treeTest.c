@@ -1,9 +1,10 @@
 #include "testUtils.h"
 #include "tree.h"
 #include <stdlib.h>
+
 //create setup, tearDown, fixtureSetup, fixtureTearDown methods if needed
 
-int data[10]={1,2,3,4,5,6,7,8,9,10};
+int data[10]={1,2,3,4,5,6,7,8,9,10};		
 
 int compareIntData(void*first, void*second){
 	return *(int*)first == *(int*)second;
@@ -87,3 +88,15 @@ void test_insert_should_not_insert_if_child_parents_is_not_present(){
 	res = insertNode(&tree, &data[4] , &data[2]);
 	ASSERT(res == 0);	
 }
+
+void test_should_not_delete_if_root_node_is_not_present(){
+	Tree tree = createTree(compareIntData);
+	int res;
+	res = deleteNode(&tree,&data[0]);
+	ASSERT(res == 0);	
+}
+
+
+
+
+

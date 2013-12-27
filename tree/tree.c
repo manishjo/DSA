@@ -68,13 +68,18 @@ TreeNode* searchParent(Tree* tree,void* parentData){
 
 int insertNode(Tree* tree, void* parentData, void* dataToInsert ){
 	TreeNode* parentNode;
-	TreeNode* childNode;
-	if(parentData == NULL){
+	TreeNode* childNode;	
+	if(parentData == NULL && tree->root == NULL){
 		tree->root = getNode(parentData,dataToInsert);
 		return 1;
 	};
+
 	parentNode = searchParent(tree,parentData);
 	if(parentNode == NULL) return 0;	
 	childNode = getNode(parentNode,dataToInsert);
 	return insert(parentNode->children,1,childNode);
 };
+
+int deleteNode(Tree* tree, void* dataToDelete){
+	if(tree->root == NULL) return 0;
+}
