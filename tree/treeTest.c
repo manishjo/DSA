@@ -79,7 +79,11 @@ void test_insert_should_insert_children_to_any_child(){
 	ASSERT(res == 1);
 }
 
-
-
-
-
+void test_insert_should_not_insert_if_child_parents_is_not_present(){
+	Tree tree = createTree(compareIntData);
+	int res;
+	res = insertNode(&tree, NULL, &data[0]);
+	res = insertNode(&tree, &data[0] , &data[1]);
+	res = insertNode(&tree, &data[4] , &data[2]);
+	ASSERT(res == 0);	
+}

@@ -89,6 +89,11 @@ int main(){
 		test_insert_should_insert_children_to_any_child();
 	tearDown();
 	testEnded();
+	testStarted("test_insert_should_not_insert_if_child_parents_is_not_present");
+	setup();
+		test_insert_should_not_insert_if_child_parents_is_not_present();
+	tearDown();
+	testEnded();
 
 	summarizeTestCount();
 	fixtureTearDown();
