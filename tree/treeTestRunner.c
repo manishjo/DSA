@@ -104,6 +104,11 @@ int main(){
 		test_delete_should_delete_if_it_is_a_node_without_children();
 	tearDown();
 	testEnded();
+	testStarted("test_deleteNode_should_not_delete_if_node_has_children");
+	setup();
+		test_deleteNode_should_not_delete_if_node_has_children();
+	tearDown();
+	testEnded();
 
 	summarizeTestCount();
 	fixtureTearDown();

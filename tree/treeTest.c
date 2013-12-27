@@ -104,6 +104,15 @@ void test_delete_should_delete_if_it_is_a_node_without_children(){
 	ASSERT(res == 1); 
 }
 
+void test_deleteNode_should_not_delete_if_node_has_children(){
+	Tree tree = createTree(compareIntData);
+	int res;
+	insertNode(&tree, NULL, &data[0]);
+	insertNode(&tree, &data[0] , &data[1]);
+	res = deleteNode(&tree,&data[0]);
+	ASSERT(res == 0); 
+}
+
 
 
 

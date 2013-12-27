@@ -88,4 +88,11 @@ int deleteNode(Tree* tree, void* dataToDelete){
 		tree->root = NULL;
 		return 1;
 	}
+	parentNode = searchParent(tree,dataToDelete);
+	if(parentNode == NULL || ((List*)(parentNode->children))->length > 0)
+		 return 0;
+	
 }
+
+
+
