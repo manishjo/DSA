@@ -81,5 +81,11 @@ int insertNode(Tree* tree, void* parentData, void* dataToInsert ){
 };
 
 int deleteNode(Tree* tree, void* dataToDelete){
+	TreeNode* parentNode;
 	if(tree->root == NULL) return 0;
+	parentNode = tree->root;
+	if(((List*)(parentNode->children))->head == NULL){
+		tree->root = NULL;
+		return 1;
+	}
 }

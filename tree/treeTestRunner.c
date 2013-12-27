@@ -99,6 +99,11 @@ int main(){
 		test_should_not_delete_if_root_node_is_not_present();
 	tearDown();
 	testEnded();
+	testStarted("test_delete_should_delete_if_it_is_a_node_without_children");
+	setup();
+		test_delete_should_delete_if_it_is_a_node_without_children();
+	tearDown();
+	testEnded();
 
 	summarizeTestCount();
 	fixtureTearDown();

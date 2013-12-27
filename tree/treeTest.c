@@ -96,6 +96,13 @@ void test_should_not_delete_if_root_node_is_not_present(){
 	ASSERT(res == 0);	
 }
 
+void test_delete_should_delete_if_it_is_a_node_without_children(){
+	Tree tree = createTree(compareIntData);
+	int res;
+	insertNode(&tree, NULL, &data[0]);
+	res = deleteNode(&tree,&data[0]);
+	ASSERT(res == 1); 
+}
 
 
 
