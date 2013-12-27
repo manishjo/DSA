@@ -1,4 +1,3 @@
-
 #include "tree.h"
 #include <stdlib.h>
 
@@ -7,6 +6,8 @@ typedef struct TreeNode{
 	struct TreeNode* parent;
 	List* children;
 } TreeNode;
+
+TreeNode* compareNodes(List* list, compareFunc* compareFunc, void* parentData);
 
 Tree createTree(compareFunc* compare){
 	Tree tree;
@@ -23,17 +24,32 @@ TreeNode* getNode(TreeNode* parentNode,void *dataToInsert){
 	return node;
 };
 
+TreeNode* compareAgain(List* list, compareFunc* compareFunc, void* parentData){
+	if(list->head->next == NULL){
+		return compareNodes(list,compareFunc,parentData);
+	}
+	return NULL;
+}
+
 TreeNode* compareNodes(List* list, compareFunc* compareFunc, void* parentData){
     Iterator* iterator = getIterator(list);
     List* tempList = create();
-    TreeNode *pNode;
+    TreeNode* pNode;
+    Iterator* iteratorChild;
     while(iterator->hasNext(iterator)){
         pNode = (TreeNode*)iterator->next(iterator);
-        if(compareFunc(pNode->data,parentData))
-                return pNode;
+        if(compareFunc(pNode->data,parentData)){
+            return pNode;
+        }
+        iteratorChild = getIterator(pNode->children);
+        while(iteratorChild->hasNext(iteratorChild)){
+            insert(list, list->length, iteratorChild->next(iteratorChild));
+        }
+        return compareAgain(list,compareFunc,parentData);
     }
     return NULL;
 };
+
 
 TreeNode* searchParent(Tree* tree,void* parentData){
 	TreeNode* parent;
@@ -53,8 +69,7 @@ int insertNode(Tree* tree, void* parentData, void* dataToInsert ){
 		return 1;
 	};
 	parentNode = searchParent(tree,parentData);
-	if(parentNode == NULL) return 0;
+	if(parentNode == NULL) return 0;	
 	childNode = getNode(parentNode,dataToInsert);
 	return insert(parentNode->children,1,childNode);
-	return 1;
 };
