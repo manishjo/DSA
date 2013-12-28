@@ -1,5 +1,6 @@
 #include "testUtils.h"
 #include "insertionSort.h"
+#include <string.h>
 typedef char string[20];
 
 

@@ -34,3 +34,13 @@ void test_should_sort_int_data(){
 		ASSERT(data[count]==after_sorting[count]);
 	}
 }
+
+void test_should_sort_float_data(){
+	int count;
+	char data[4] = {'d','c','b','a'};
+	char after_sorting[4] = {'a','b','c','d'};
+	bubbleSort(&data,4,sizeof(char),compareChar);
+	for(count=0 ; count < 4 ; count++){
+		ASSERT(data[count]==after_sorting[count]);
+	}
+}
