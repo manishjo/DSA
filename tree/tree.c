@@ -24,6 +24,7 @@ TreeNode* getNode(TreeNode* parentNode,void *dataToInsert){
 	return node;
 };
 
+
 TreeNode* compareNodes(List* list, compareFunc* compareFunc, void* parentData){
     Iterator* iterator = getIterator(list);
     TreeNode* treeNode,result;
@@ -106,6 +107,29 @@ int deleteNode(Tree* tree, void* dataToDelete){
 int searchNode(Tree* tree,void* data){
 	if(data == ((TreeNode*)tree->root)->data)return 1;
 	return searchThisNode(tree,data) != NULL;
+}
+
+
+void* getNextChildData(Iterator* iterator){
+    TreeNode *node;
+    Iterator* treeIterator = getIterator(iterator->list);
+    treeIterator->currentPosition = iterator->currentPosition;
+    node = treeIterator->next(treeIterator);
+    if(!node) return node;
+    iterator->currentPosition++;
+    return node->data;
+}
+
+Iterator* getChildren(Tree* tree, void *parentData){
+    TreeNode* parentNode = searchThisNode(tree, parentData);
+    Iterator* iterator;
+    if(!parentNode) {
+            iterator = getIterator(NULL);
+            return iterator;
+    }
+    iterator = getIterator(parentNode->children);
+    iterator->next = &getNextChildData;
+    return iterator;
 }
 
 

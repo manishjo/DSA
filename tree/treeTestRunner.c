@@ -134,6 +134,11 @@ int main(){
 		test_searchNode_should_search_root_node();
 	tearDown();
 	testEnded();
+	testStarted("test_inserts_a_root_node_into_tree");
+	setup();
+		test_inserts_a_root_node_into_tree();
+	tearDown();
+	testEnded();
 
 	summarizeTestCount();
 	fixtureTearDown();
