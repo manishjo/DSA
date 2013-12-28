@@ -104,6 +104,7 @@ int deleteNode(Tree* tree, void* dataToDelete){
 }
 
 int searchNode(Tree* tree,void* data){
+	if(data == ((TreeNode*)tree->root)->data)return 1;
 	return searchThisNode(tree,data) != NULL;
 }
 
