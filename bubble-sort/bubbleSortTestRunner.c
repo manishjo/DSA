@@ -49,9 +49,9 @@ int main(){
 	fixtureSetup();
 	resetTestCount();
 
-	testStarted("test_fail");
+	testStarted("test_should_sort_int_data");
 	setup();
-		test_fail();
+		test_should_sort_int_data();
 	tearDown();
 	testEnded();
 
