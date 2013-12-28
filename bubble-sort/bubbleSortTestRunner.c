@@ -64,6 +64,11 @@ int main(){
 		test_should_sort_float_data();
 	tearDown();
 	testEnded();
+	testStarted("test_should_sort_double_data");
+	setup();
+		test_should_sort_double_data();
+	tearDown();
+	testEnded();
 
 	summarizeTestCount();
 	fixtureTearDown();
