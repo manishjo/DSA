@@ -146,6 +146,17 @@ void test_searchNode_should_give_1_if_node_is_found(){
 	ASSERT(res == 1); 	
 }
 
+void test_searchNode_should_give_0_if_node_is_not_found(){
+	Tree tree = createTree(compareIntData);
+	int res;
+	insertNode(&tree, NULL, &data[0]);
+	insertNode(&tree, &data[0] , &data[1]);
+	insertNode(&tree, &data[1] ,&data[2]);
+	insertNode(&tree,&data[2],&data[3]);
+	res = searchNode(&tree,&data[4]);
+	ASSERT(res == 0); 	
+}
+
 
 
 
