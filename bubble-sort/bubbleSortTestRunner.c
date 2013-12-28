@@ -54,6 +54,11 @@ int main(){
 		test_should_sort_int_data();
 	tearDown();
 	testEnded();
+	testStarted("test_should_sort_char_data");
+	setup();
+		test_should_sort_char_data();
+	tearDown();
+	testEnded();
 	testStarted("test_should_sort_float_data");
 	setup();
 		test_should_sort_float_data();
