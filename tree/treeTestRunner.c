@@ -124,6 +124,11 @@ int main(){
 		test_searchNode_should_give_1_if_node_is_found();
 	tearDown();
 	testEnded();
+	testStarted("test_searchNode_should_give_0_if_node_is_not_found");
+	setup();
+		test_searchNode_should_give_0_if_node_is_not_found();
+	tearDown();
+	testEnded();
 
 	summarizeTestCount();
 	fixtureTearDown();
