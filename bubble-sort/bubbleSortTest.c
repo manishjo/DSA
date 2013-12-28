@@ -1,6 +1,7 @@
 #include "testUtils.h"
 #include "bubbleSort.h"
 #include <string.h>
+#include <stdio.h>
 
 //create setup, tearDown, fixtureSetup, fixtureTearDown methods if needed
 
@@ -29,7 +30,7 @@ void test_should_sort_int_data(){
 	int data[4] = {4,3,2,1};
 	int after_sorting[4] = {1,2,3,4};
 	bubbleSort(&data,4,sizeof(int),compareInt);
-	// for(count=0;count<4;count++){
-	// 	ASSERT(data[count]==after_sorting[count]);
-	// }
+	for(count=0 ; count < 4 ; count++){
+		ASSERT(data[count]==after_sorting[count]);
+	}
 }

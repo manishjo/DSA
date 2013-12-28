@@ -4,7 +4,7 @@
 
 void swap(int j,void* base,int elementSize){
 	void* temp = calloc(1, elementSize);
-	memmove(temp,base+elementSize*(j+1),elementSize);
+	memmove(temp,base+elementSize*(j),elementSize);
 	memmove(base+elementSize*j,base+elementSize*(j+1),elementSize);
 	memmove(base+elementSize*(j+1),temp,elementSize);
 };
