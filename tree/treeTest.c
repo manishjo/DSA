@@ -104,7 +104,7 @@ void test_delete_should_delete_if_it_is_a_node_without_children(){
 	ASSERT(res == 1); 
 }
 
-void test_deleteNode_should_not_delete_if_node_has_children(){
+void test_deleteNode_should_not_delete_root_if_node_has_children(){
 	Tree tree = createTree(compareIntData);
 	int res;
 	insertNode(&tree, NULL, &data[0]);
@@ -112,6 +112,30 @@ void test_deleteNode_should_not_delete_if_node_has_children(){
 	res = deleteNode(&tree,&data[0]);
 	ASSERT(res == 0); 
 }
+
+void test_deleteNode_should_not_delete_node_if_it_has_children(){
+	Tree tree = createTree(compareIntData);
+	int res;
+	insertNode(&tree, NULL, &data[0]);
+	insertNode(&tree, &data[0] , &data[1]);
+	insertNode(&tree, &data[1] ,&data[2]);
+	insertNode(&tree,&data[2],&data[3]);
+	res = deleteNode(&tree,&data[1]);
+	ASSERT(res == 0); 	
+}
+
+void test_deleteNode_should_delete_if_it_is_a_leaf_node(){
+	Tree tree = createTree(compareIntData);
+	int res;
+	insertNode(&tree, NULL, &data[0]);
+	insertNode(&tree, &data[0] , &data[1]);
+	insertNode(&tree, &data[1] ,&data[2]);
+	insertNode(&tree,&data[2],&data[3]);
+	res = deleteNode(&tree,&data[3]);
+	ASSERT(res == 1); 		
+}
+
+
 
 
 

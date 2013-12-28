@@ -24,13 +24,6 @@ TreeNode* getNode(TreeNode* parentNode,void *dataToInsert){
 	return node;
 };
 
-TreeNode* compareAgain(List* list, compareFunc* compareFunc, void* parentData){
-	if(list->head->next == NULL){
-		return compareNodes(list,compareFunc,parentData);
-	}
-	return NULL;
-}
-
 TreeNode* compareNodes(List* list, compareFunc* compareFunc, void* parentData){
     Iterator* iterator = getIterator(list);
     TreeNode* treeNode,result;
@@ -47,7 +40,6 @@ TreeNode* compareNodes(List* list, compareFunc* compareFunc, void* parentData){
         if(treeNode->children->head != NULL){
 	        iteratorChild = getIterator(treeNode->children);
 	        while(iteratorChild->hasNext(iteratorChild)){
-	        	// printf("%d\n", *(int*)iteratorChild->next(iteratorChild));
 	            insert(listOfChildren, listOfChildren->length + 1, iteratorChild->next(iteratorChild));
 	        }
         }
@@ -80,18 +72,35 @@ int insertNode(Tree* tree, void* parentData, void* dataToInsert ){
 	return insert(parentNode->children,1,childNode);
 };
 
+int getChildIndex(List* list,void* childData, compareFunc* compareFunc){
+    Iterator* iterator = getIterator(list);
+    TreeNode *ptNode;
+    int result;
+    while(iterator->hasNext(iterator)){
+        ptNode = iterator->next(iterator);
+        result = compareFunc(ptNode->data, childData);
+        if(result) return iterator->currentPosition;
+    }
+    return -1;
+}
+
 int deleteNode(Tree* tree, void* dataToDelete){
 	TreeNode* parentNode;
+	TreeNode* nodeToSearch;
+	int index;
 	if(tree->root == NULL) return 0;
 	parentNode = tree->root;
 	if(((List*)(parentNode->children))->head == NULL){
 		tree->root = NULL;
 		return 1;
 	}
-	parentNode = searchParent(tree,dataToDelete);
-	if(parentNode == NULL || ((List*)(parentNode->children))->length > 0)
-		 return 0;
-	
+	nodeToSearch = searchParent(tree,dataToDelete);
+	parentNode = nodeToSearch->parent;
+	if(nodeToSearch == NULL)return 0;
+	if(nodeToSearch->children->head != NULL) return 0;
+	index = getChildIndex(parentNode->children,dataToDelete,tree->compare);
+	if(index == -1) return 0;
+	return Remove(parentNode->children,index);
 }
 
 
