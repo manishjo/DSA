@@ -2,6 +2,7 @@
 #include "bubbleSort.h"
 #include <string.h>
 #include <stdio.h>
+typedef char string[10];
 
 //create setup, tearDown, fixtureSetup, fixtureTearDown methods if needed
 
@@ -62,5 +63,15 @@ void test_should_sort_double_data(){
 	bubbleSort(&data,4,sizeof(double),compareDouble);
 	for(count=0 ; count < 4 ; count++){
 		ASSERT(data[count]==after_sorting[count]);
+	}
+}
+
+void test_should_sort_string_data(){
+	int count;
+	string data[4] = {"deepak","chandu","bhanu","amit"};
+	string after_sorting[4] = {"amit","bhanu","chandu","deepak"};
+	bubbleSort(&data,4,sizeof(string),compareString);
+	for(count=0 ; count < 4 ; count++){
+		ASSERT(strcmp(data[count],after_sorting[count])==0);
 	}
 }
