@@ -48,7 +48,7 @@ TreeNode* compareNodes(List* list, compareFunc* compareFunc, void* parentData){
 };
 
 
-TreeNode* searchParent(Tree* tree,void* parentData){
+TreeNode* searchThisNode(Tree* tree,void* parentData){
 	TreeNode* parent;
  	TreeNode* root = tree->root;
     if(NULL == root)
@@ -66,7 +66,7 @@ int insertNode(Tree* tree, void* parentData, void* dataToInsert ){
 		return 1;
 	};
 
-	parentNode = searchParent(tree,parentData);
+	parentNode = searchThisNode(tree,parentData);
 	if(parentNode == NULL) return 0;	
 	childNode = getNode(parentNode,dataToInsert);
 	return insert(parentNode->children,1,childNode);
@@ -94,7 +94,7 @@ int deleteNode(Tree* tree, void* dataToDelete){
 		tree->root = NULL;
 		return 1;
 	}
-	nodeToSearch = searchParent(tree,dataToDelete);
+	nodeToSearch = searchThisNode(tree,dataToDelete);
 	parentNode = nodeToSearch->parent;
 	if(nodeToSearch == NULL)return 0;
 	if(nodeToSearch->children->head != NULL) return 0;
@@ -103,5 +103,8 @@ int deleteNode(Tree* tree, void* dataToDelete){
 	return Remove(parentNode->children,index);
 }
 
+int searchNode(Tree* tree,void* data){
+	return searchThisNode(tree,data) != NULL;
+}
 
 

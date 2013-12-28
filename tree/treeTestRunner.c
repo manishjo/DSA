@@ -119,6 +119,11 @@ int main(){
 		test_deleteNode_should_delete_if_it_is_a_leaf_node();
 	tearDown();
 	testEnded();
+	testStarted("test_searchNode_should_give_1_if_node_is_found");
+	setup();
+		test_searchNode_should_give_1_if_node_is_found();
+	tearDown();
+	testEnded();
 
 	summarizeTestCount();
 	fixtureTearDown();

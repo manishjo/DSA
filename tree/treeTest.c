@@ -135,6 +135,16 @@ void test_deleteNode_should_delete_if_it_is_a_leaf_node(){
 	ASSERT(res == 1); 		
 }
 
+void test_searchNode_should_give_1_if_node_is_found(){
+	Tree tree = createTree(compareIntData);
+	int res;
+	insertNode(&tree, NULL, &data[0]);
+	insertNode(&tree, &data[0] , &data[1]);
+	insertNode(&tree, &data[1] ,&data[2]);
+	insertNode(&tree,&data[2],&data[3]);
+	res = searchNode(&tree,&data[3]);
+	ASSERT(res == 1); 	
+}
 
 
 
