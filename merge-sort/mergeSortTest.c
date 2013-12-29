@@ -65,3 +65,14 @@ void test_should_sort_double_data(){
 		ASSERT(data[count]==after_sorting[count]);
 	}
 }
+
+
+void test_should_sort_string_data(){
+	int count;
+	string data[4] = {"deepak","chandu","bhanu","amit"};
+	string after_sorting[4] = {"amit","bhanu","chandu","deepak"};
+	mergeSort(&data,4,sizeof(string),compareString);
+	for(count=0 ; count < 4 ; count++){
+		ASSERT(strcmp(data[count],after_sorting[count])==0);
+	}
+}
