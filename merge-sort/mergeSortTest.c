@@ -44,3 +44,14 @@ void test_should_sort_char_data(){
 		ASSERT(data[count]==after_sorting[count]);
 	}
 }
+
+
+void test_should_sort_float_data(){
+	int count;
+	float data[4] = {4.5,3.5,2.5,1.5};
+	float after_sorting[4] = {1.5,2.5,3.5,4.5};
+	mergeSort(&data,4,sizeof(float),compareFloat);
+	for(count=0 ; count < 4 ; count++){
+		ASSERT(data[count]==after_sorting[count]);
+	}
+}
