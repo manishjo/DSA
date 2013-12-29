@@ -35,3 +35,12 @@ void test_should_sort_int_data(){
 	}
 }
 
+void test_should_sort_char_data(){
+	int count;
+	char data[4] = {'d','c','b','a'};
+	char after_sorting[4] = {'a','b','c','d'};
+	mergeSort(&data,4,sizeof(char),compareChar);
+	for(count=0 ; count < 4 ; count++){
+		ASSERT(data[count]==after_sorting[count]);
+	}
+}
