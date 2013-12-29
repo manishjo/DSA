@@ -17,6 +17,7 @@ void test_to_create_tree_and_insert_root_with_an_int_data(){
     iterator = getChildren(&tree, &data[0]);
     ASSERT(NULL == iterator->next(iterator));
 	ASSERT(res == 1);
+	dispose_tree(&tree);
 }
 
 
@@ -28,6 +29,7 @@ void test_to_create_tree_and_insert_root_with_an_char_data(){
 	iterator = getChildren(&tree, &data);
     ASSERT(NULL == iterator->next(iterator));
 	ASSERT(res == 1);
+	dispose_tree(&tree);
 }
 
 
@@ -39,6 +41,8 @@ void test_to_create_tree_and_insert_root_with_an_float_data(){
 	iterator = getChildren(&tree, &data);
     ASSERT(NULL == iterator->next(iterator));
 	ASSERT(res == 1);
+	dispose_tree(&tree);
+
 }
 
 void test_insert_should_insert_a_child_to_root_node(){
@@ -47,7 +51,7 @@ void test_insert_should_insert_a_child_to_root_node(){
 	insertNode(&tree, NULL, &data[0]);
 	insertNode(&tree, &data[0] , &data[1]);
     iterator = getChildren(&tree, &data[0]);
-    ASSERT(&data[1] == iterator->next(iterator));
+    ASSERT(&data[1] == iterator->next(iterator));    
 }
 
 void test_insert_should_insert_two_children_to_root_node(){
@@ -61,6 +65,7 @@ void test_insert_should_insert_two_children_to_root_node(){
     ASSERT(&data[2] == iterator->next(iterator));
     ASSERT(&data[1] == iterator->next(iterator));
 	ASSERT(res == 1);
+
 }
 
 void test_insert_should_insert_children_to_a_children_node(){
