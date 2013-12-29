@@ -131,19 +131,3 @@ Iterator* getChildren(Tree* tree, void *parentData){
     iterator->next = &getNextChildData;
     return iterator;
 }
-
-void free_tree_node(TreeNode* node){
-    Iterator* iterator = getIterator(node->children);
-    while(iterator->hasNext(iterator)){
-        node = iterator->next(iterator);
-        dispose(node->children);
-        node->parent = NULL;
-        free_tree_node(node);
-    }
-    
-}
-
-void dispose_tree(Tree* tree){
-    TreeNode* root = tree->root;
-    free_tree_node(root);
-}
