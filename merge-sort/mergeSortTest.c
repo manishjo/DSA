@@ -76,3 +76,22 @@ void test_should_sort_string_data(){
 		ASSERT(strcmp(data[count],after_sorting[count])==0);
 	}
 }
+
+void test_should_sort_int_data_if_there_is_only_one_data(){
+	int count;
+	int data[1] = {4};
+	mergeSort(&data,1,sizeof(int),compareInt);
+	for(count=0 ; count < 1 ; count++){
+		ASSERT(data[count]==4);
+	}
+}
+
+void test_should_manage_if_it_is_already_sorted(){
+	int count;
+	double data[4] = {1.5,2.5,3.5,4.5};
+	double after_sorting[4] = {1.5,2.5,3.5,4.5};
+	mergeSort(&data,4,sizeof(double),compareDouble);
+	for(count=0 ; count < 4 ; count++){
+		ASSERT(data[count]==after_sorting[count]);
+	}
+}
