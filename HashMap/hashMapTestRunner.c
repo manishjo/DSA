@@ -74,6 +74,11 @@ int main(){
 		test_get_should_get_value_from_a_key_among_two();
 	tearDown();
 	testEnded();
+	testStarted("test_get_should_not_return_value_if_key_is_not_present");
+	setup();
+		test_get_should_not_return_value_if_key_is_not_present();
+	tearDown();
+	testEnded();
 
 	summarizeTestCount();
 	fixtureTearDown();
