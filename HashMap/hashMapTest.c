@@ -94,6 +94,29 @@ void test_delete_should_delete_given_key_value_from_the_hash(){
 	ASSERT(valueCheak == NULL);
 }
 
+void test_delete_should_delete_if_there_is_only_one_key_in_hash(){
+	void* valueCheak;
+	string key = "chair";
+	string value = "kursi";
+	Hash_map* hash_map = create_hash(hasCodeGenerator,compareIt,10);
+	put(hash_map,&value,&key);
+	remove_hash(hash_map,&key);
+	valueCheak = Get(hash_map,&key);
+	ASSERT(valueCheak == NULL);
+}	
+
+void test_delete_should_not_delete_if_value_is_not_find(){
+	int result;
+	string key = "chair";
+	string value = "kursi";
+	string key2 = "fake";
+	Hash_map* hash_map = create_hash(hasCodeGenerator,compareIt,10);
+	put(hash_map,&value,&key);
+	result = remove_hash(hash_map,&key2);
+	ASSERT(result == 0);
+}		
+
+
 
 
 

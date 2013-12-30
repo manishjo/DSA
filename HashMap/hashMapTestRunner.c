@@ -84,6 +84,16 @@ int main(){
 		test_delete_should_delete_given_key_value_from_the_hash();
 	tearDown();
 	testEnded();
+	testStarted("test_delete_should_delete_if_there_is_only_one_key_in_hash");
+	setup();
+		test_delete_should_delete_if_there_is_only_one_key_in_hash();
+	tearDown();
+	testEnded();
+	testStarted("test_delete_should_not_delete_if_value_is_not_find");
+	setup();
+		test_delete_should_not_delete_if_value_is_not_find();
+	tearDown();
+	testEnded();
 
 	summarizeTestCount();
 	fixtureTearDown();
