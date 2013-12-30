@@ -78,6 +78,22 @@ void test_get_should_not_return_value_if_key_is_not_present(){
 	ASSERT(result == NULL);
 }
 
+void test_delete_should_delete_given_key_value_from_the_hash(){
+	int result;
+	string key = "chair";
+	string value = "kursi";
+	string key2 = "stick";
+	string value2 = "chadi";
+	Hash_map* hash_map = create_hash(hasCodeGenerator,compareIt,10);
+	put(hash_map,&value,&key);
+	put(hash_map,&value2,&key2);
+	result = remove_hash(hash_map,&key2);
+	ASSERT(result == 1);
+}
+
+
+
+
 
 
 

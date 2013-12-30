@@ -14,3 +14,4 @@ typedef int (*hasGenerator)(void* key,Hash_map* hash_map);
 Hash_map* create_hash(hasGenerator hashCode, KeyComparator compareFunc, int totalBuckets);
 int put(Hash_map *hashMap,void *value,void *key);
 void* Get(Hash_map *hashMap , void *key);
+int remove_hash(Hash_map* hashMap, void * key);

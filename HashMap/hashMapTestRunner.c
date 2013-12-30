@@ -79,6 +79,11 @@ int main(){
 		test_get_should_not_return_value_if_key_is_not_present();
 	tearDown();
 	testEnded();
+	testStarted("test_delete_should_delete_given_key_value_from_the_hash");
+	setup();
+		test_delete_should_delete_given_key_value_from_the_hash();
+	tearDown();
+	testEnded();
 
 	summarizeTestCount();
 	fixtureTearDown();
