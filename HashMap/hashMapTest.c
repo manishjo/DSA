@@ -80,6 +80,7 @@ void test_get_should_not_return_value_if_key_is_not_present(){
 
 void test_delete_should_delete_given_key_value_from_the_hash(){
 	int result;
+	void* valueCheak;
 	string key = "chair";
 	string value = "kursi";
 	string key2 = "stick";
@@ -89,7 +90,11 @@ void test_delete_should_delete_given_key_value_from_the_hash(){
 	put(hash_map,&value2,&key2);
 	result = remove_hash(hash_map,&key2);
 	ASSERT(result == 1);
+	valueCheak = Get(hash_map,&key2);
+	ASSERT(valueCheak == NULL);
 }
+
+
 
 
 
