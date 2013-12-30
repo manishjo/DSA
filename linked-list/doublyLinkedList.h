@@ -10,19 +10,19 @@ typedef struct{
 }List;
 
 typedef struct iterator{
-	int (*hasNext)(struct iterator* it);
-	void* (*next)(struct iterator* it);
+	int (*hasNextNode)(struct iterator* it);
+	void* (*nextNode)(struct iterator* it);
 	List* list;
 	int currentPosition;
-}Iterator;
+}ListIterator;
 
-List* create();
-int insert(List* , int , void*);
+List* createList();
+int insertNode(List* , int , void*);
 int Remove(List* , int index);
 int findIndex(List*, void*,int);
 int length(List*);
-void dispose(List* start);
-Iterator* getIterator(List* list);
-int hasNext(Iterator* iterator);
-void* next(Iterator* iterator);
+void disposeList(List* start);
+ListIterator* getListIterator(List* list);
+int hasNextNode(ListIterator* iterator);
+void* nextNode(ListIterator* iterator);
 

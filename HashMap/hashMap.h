@@ -12,6 +12,7 @@ typedef struct{
 }Hash_map;
 
 Hash_map* create_hash(hasGenerator hasFunc, KeyComparator compare, int totelBuckets);
+int put(Hash_map *hashMap,void *value,void *key);
 
 
 

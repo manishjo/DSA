@@ -5,15 +5,16 @@
 typedef char string[15];
 
 int hasCodeGenerator(void* key){
-	return *(int*)key;
+	return *(int*)key%10;
 }
 
 int compareIt(void* firstKey, void* secondkey){
     return *(int*)firstKey == *(int*)secondkey;
 }
 
-void test_hasCodeGenerator_should_give_hascode_for_a_string(){
+void test_create_hash_should_create_a_hash_map(){
 	Hash_map *hash_map = create_hash(hasCodeGenerator, compareIt,10);
 	ASSERT(hash_map->totelBuckets == 10);
-}
+};
+
 

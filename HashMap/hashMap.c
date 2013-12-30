@@ -21,3 +21,7 @@ Hash_map* create_hash(hasGenerator hasFunc, KeyComparator compare, int totelBuck
 	hashMap->hasFunc = hasFunc;
 	return hashMap;
 };
+int put(Hash_map *hashMap,void *value,void *key){
+	int userKey= hashMap->hasFunc(&key);
+	return 1;
+};

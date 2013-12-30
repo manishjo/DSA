@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <memory.h>
 
-List *create(){
+List *createList(){
         List* start = (List*)calloc(sizeof(List),1);
         start->length = 0;
         return start;
@@ -88,7 +88,7 @@ int removeMiddle(Node*temp, Node*temp2, List*start, int index){
         return 1;
 }
 
-int insert(List* start , int index , void* data){
+int insertNode(List* start , int index , void* data){
         Node* nodePtr = createNode();
         Node* temp = createNode();
         Node* temp2 = createNode();        
@@ -132,16 +132,16 @@ int findIndex(List* start, void* element, int elementSize){
         return 0;
 }
 
-int hasNext(Iterator* iterator){
+int hasNextNode(ListIterator* iterator){
         if(iterator->list->length == iterator->currentPosition)
                 return 0;
         return 1;
 }
 
-void* next(Iterator* iterator){
+void* nextNode(ListIterator* iterator){
         int count = 0;
         Node* temp = iterator->list->head;
-        if(hasNext(iterator) == 0)return NULL;
+        if(hasNextNode(iterator) == 0)return NULL;
         for(count=0;count<=iterator->currentPosition-1;count++){
                 temp = temp->next;
         }
@@ -149,17 +149,17 @@ void* next(Iterator* iterator){
         return temp->data;
 }
 
-Iterator* getIterator(List* list){
-        Iterator* iterator = (Iterator*)calloc(sizeof(Iterator),1);
+ListIterator* getListIterator(List* list){
+        ListIterator* iterator = (ListIterator*)calloc(sizeof(ListIterator),1);
         iterator->currentPosition = 0;
         iterator->list = list;
-        iterator->hasNext = hasNext;
-        iterator->next =  next;
+        iterator->hasNextNode = hasNextNode;
+        iterator->nextNode =  nextNode;
         return iterator;
 
 }
 
-void dispose(List* start){
+void disposeList(List* start){
         Node* temp;
         Node* temp2;
         temp = start->head;
