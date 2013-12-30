@@ -47,12 +47,22 @@ void test_get_should_get_a_value_from_a_key(){
 	void* result;
 	string key = "formidable";
 	string value = "powerfull";
-	string key2 = "apple";
-	string value2 = "saeb";
+	Hash_map* hash_map = create_hash(hasCodeGenerator,compareIt,10);
+	put(hash_map,&value,&key);
+	result = Get(hash_map,&key);
+	ASSERT(strcmp(*(string*)value,*(string*)result) == 0);
+}
+
+
+void test_get_should_get_value_from_a_key_among_two(){
+	void* result;
+	string key = "chair";
+	string value = "kursi";
+	string key2 = "stick";
+	string value2 = "chadi";
 	Hash_map* hash_map = create_hash(hasCodeGenerator,compareIt,10);
 	put(hash_map,&value,&key);
 	put(hash_map,&value2,&key2);
-	result = Get(hash_map,&key);
-
-	ASSERT(strcmp(*(string*)value,*(string*)result) == 0);
+	result = Get(hash_map,&key2);
+	ASSERT(strcmp(*(string*)value2,*(string*)result) == 0);
 }

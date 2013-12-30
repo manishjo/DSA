@@ -69,6 +69,11 @@ int main(){
 		test_get_should_get_a_value_from_a_key();
 	tearDown();
 	testEnded();
+	testStarted("test_get_should_get_value_from_a_key_among_two");
+	setup();
+		test_get_should_get_value_from_a_key_among_two();
+	tearDown();
+	testEnded();
 
 	summarizeTestCount();
 	fixtureTearDown();
