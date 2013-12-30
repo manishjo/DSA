@@ -5,12 +5,13 @@ typedef int (*hasGenerator)(void* key);
 typedef int (*KeyComparator)(void* firstKey, void* secondKey);
 
 typedef struct{
-	ArrayList* buckets;
+	ArrayList buckets;
 	hasGenerator hasFunc;
 	KeyComparator compare;
-}hash_map;
+	int totelBuckets;
+}Hash_map;
 
-int hasCodeGenerator(void* key);
+Hash_map* create_hash(hasGenerator hasFunc, KeyComparator compare, int totelBuckets);
 
 
 
