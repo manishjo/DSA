@@ -59,6 +59,16 @@ int main(){
 		test_put_should_put_a_value_in_the_bucket();
 	tearDown();
 	testEnded();
+	testStarted("test_put_should_put_two_values_in_the_bucket");
+	setup();
+		test_put_should_put_two_values_in_the_bucket();
+	tearDown();
+	testEnded();
+	testStarted("test_get_should_get_a_value_from_a_key");
+	setup();
+		test_get_should_get_a_value_from_a_key();
+	tearDown();
+	testEnded();
 
 	summarizeTestCount();
 	fixtureTearDown();
