@@ -1,17 +1,17 @@
 #include "./include/doublyLinkedList.h"
 #include "./include/arrayList.h"
 
-typedef int (*hasGenerator)(void* key);
 typedef int (*KeyComparator)(void* firstKey, void* secondKey);
 
-typedef struct{
+typedef struct hashMap{
 	ArrayList buckets;
-	hasGenerator hasFunc;
+	int (*hasGenerator)(void* key,struct hashMap* hash_map);
 	KeyComparator compare;
 	int totelBuckets;
 }Hash_map;
 
-Hash_map* create_hash(hasGenerator hasFunc, KeyComparator compare, int totelBuckets);
+typedef int (*hasGenerator)(void* key,Hash_map* hash_map);
+Hash_map* create_hash(hasGenerator hashCode, KeyComparator compareFunc, int totelBuckets);
 int put(Hash_map *hashMap,void *value,void *key);
 
 

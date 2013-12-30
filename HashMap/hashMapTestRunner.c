@@ -49,9 +49,14 @@ int main(){
 	fixtureSetup();
 	resetTestCount();
 
-	testStarted("test_hasCodeGenerator_should_give_hascode_for_a_string");
+	testStarted("test_create_hash_should_create_a_hash_map");
 	setup();
-		test_hasCodeGenerator_should_give_hascode_for_a_string();
+		test_create_hash_should_create_a_hash_map();
+	tearDown();
+	testEnded();
+	testStarted("test_put_should_put_a_value_in_the_bucket");
+	setup();
+		test_put_should_put_a_value_in_the_bucket();
 	tearDown();
 	testEnded();
 
