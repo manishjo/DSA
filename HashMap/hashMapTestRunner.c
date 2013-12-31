@@ -104,6 +104,11 @@ int main(){
 		test_getKeys_should_return_two_keys();
 	tearDown();
 	testEnded();
+	testStarted("test_getkeys_should_not_return_keys_if_there_are_no_any_keys");
+	setup();
+		test_getkeys_should_not_return_keys_if_there_are_no_any_keys();
+	tearDown();
+	testEnded();
 
 	summarizeTestCount();
 	fixtureTearDown();

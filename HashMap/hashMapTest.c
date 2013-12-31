@@ -140,3 +140,11 @@ void test_getKeys_should_return_two_keys(){
 	ASSERT(iterator->nextNode(iterator) == &key);
 	ASSERT(iterator->nextNode(iterator) == &key2);
 }
+
+void test_getkeys_should_not_return_keys_if_there_are_no_any_keys(){
+	void* valueCheak;
+	HashIterator* iterator;
+	Hash_map* hash_map = create_hash(hasCodeGenerator,compareIt,10);
+	iterator = getKeys(hash_map);
+	ASSERT(iterator->nextNode(iterator) == NULL);
+}
