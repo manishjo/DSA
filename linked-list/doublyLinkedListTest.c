@@ -21,6 +21,7 @@ void test_insert_should_insert_first_node(){
  	start = createList();
  	answer = insertNode(start,1,&element);
  	ASSERT(answer == 1);
+ 	disposeList(start);
 };
 
 void test_insert_should_insert_node_in_the_frist_position(){
@@ -28,10 +29,8 @@ void test_insert_should_insert_node_in_the_frist_position(){
  	start = createList();
  	answer = insertNode(start,1,&element);
  	answer = insertNode(start,1,&element2);
- 	printf("first %d\n", *(int*)start->head->data);
- 	printf("second %d\n", *(int*)start->head->next->data);
  	ASSERT(answer == 1);
-
+ 	disposeList(start);
 };
 
 void test_insert_should_insert_node_in_the_last_position(){
@@ -41,6 +40,7 @@ void test_insert_should_insert_node_in_the_last_position(){
  	answer = insertNode(start,1,&element2);
  	answer = insertNode(start,3,&element2);
   	ASSERT(answer == 1);
+ 	disposeList(start);
 };
 
 void test_insert_should_return_0_when_index_is_more_than_required_index(){
@@ -48,6 +48,7 @@ void test_insert_should_return_0_when_index_is_more_than_required_index(){
 	start = createList();
 	answer = insertNode(start,5,&element);
 	ASSERT(answer==0);	
+ 	disposeList(start);
 };
 
 void test_insert_should_return_1_if_element_inserted_in_the_middle(){
@@ -58,6 +59,7 @@ void test_insert_should_return_1_if_element_inserted_in_the_middle(){
 	answer = insertNode(start,3,&element);
 	answer = insertNode(start,2,&element);
 	ASSERT(answer==1);
+ 	disposeList(start);
 };
 
 void test_Remove_should_delete_the_first_element(){
@@ -94,6 +96,8 @@ void test_Remove_should_delete_the_middle_element(){
 	insertNode(start,4,&element2);
 	answer = Remove(start,2);
 	ASSERT(answer == 1);
+ 	disposeList(start);
+	
 }
 
 void test_length_should_return_the_totel_no_of_elements(){
@@ -107,6 +111,8 @@ void test_length_should_return_the_totel_no_of_elements(){
 	insertNode(start,4,&element2);
 	answer = length(start);
 	ASSERT(answer == 4);
+ 	disposeList(start);
+
 }
 
 void test_findIndex_should_return_the_position_of_element_in_list(){
@@ -120,6 +126,8 @@ void test_findIndex_should_return_the_position_of_element_in_list(){
 	insertNode(start,3,&element3);
 	answer = findIndex(start,&element2,sizeof(int));
 	ASSERT(answer == 2);	
+ 	disposeList(start);
+
 }
 
 void test_findIndex_should_return_0_if_element_not_found(){
@@ -134,6 +142,8 @@ void test_findIndex_should_return_0_if_element_not_found(){
 	insertNode(start,3,&element3);
 	answer = findIndex(start,&element4,sizeof(int));
 	ASSERT(answer == 0);	
+ 	disposeList(start);
+
 }
 
 void test_getIterator_should_make_a_iterator(){
@@ -147,6 +157,8 @@ void test_getIterator_should_make_a_iterator(){
 	insertNode(start,3,&element3);
 	iterator = getListIterator(start);
 	ASSERT(0 == iterator->currentPosition);
+ 	disposeList(start);
+
 }
 
 void test_next_should_give_first_value(){
@@ -162,6 +174,8 @@ void test_next_should_give_first_value(){
 	iterator = getListIterator(start);
 	answer = iterator->nextNode(iterator);
 	ASSERT(190 == *answer);
+ 	disposeList(start);
+
 }
 
 void test_hasNextNode_should_tell_that_it_has_next_value(){
@@ -177,6 +191,8 @@ void test_hasNextNode_should_tell_that_it_has_next_value(){
 	iterator = getListIterator(start);
 	answer = iterator->hasNextNode(iterator);
 	ASSERT(1 == answer);
+ 	disposeList(start);
+
 }
 
 void test_hasNextNode_should_tell_that_it_does_not_have_next_value_(){
@@ -190,6 +206,8 @@ void test_hasNextNode_should_tell_that_it_does_not_have_next_value_(){
 	iterator->currentPosition++;
 	answer = iterator->hasNextNode(iterator);
 	ASSERT(0 == answer);
+ 	disposeList(start);
+
 }
 
 void test_next_should_give_each_element_one_by_one(){
@@ -209,6 +227,8 @@ void test_next_should_give_each_element_one_by_one(){
 	ASSERT(200 == *answer);
 	answer = iterator->nextNode(iterator);
 	ASSERT(210 == *answer);
+ 	disposeList(start);
+
 }
 
 void test_next_should_give_null_if_there_is_no_data(){
@@ -222,4 +242,6 @@ void test_next_should_give_null_if_there_is_no_data(){
 	ASSERT(190 == *answer);
 	answer = iterator->nextNode(iterator);
 	ASSERT(NULL == answer);
+ 	disposeList(start);
+
 }

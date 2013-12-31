@@ -157,17 +157,14 @@ ListIterator* getListIterator(List* list){
         iterator->hasNextNode = hasNextNode;
         iterator->nextNode =  nextNode;
         return iterator;
-
 }
 
-void disposeList(List* start){
-        Node* temp;
-        Node* temp2;
-        temp = start->head;
-        while(temp->next != NULL){
-                temp2 = temp;
-                temp = temp->next;
-                free(temp2);
-        }
+void disposeList(List* list){
+        Node *temp;
+        if(!list || list->head == NULL)
+                return;
+        temp = list->head;
+        list->head = temp->next;
         free(temp);
+        disposeList(list);
 }
