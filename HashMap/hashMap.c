@@ -38,11 +38,13 @@ HashData* createHashData(void* key, void* value){
 }
 
 int put(Hash_map *hashMap,void *value,void *key){
-	int index=0;
-    int hashCode= hashMap->hasGenerator(key,hashMap);
-    int bucketNo = hashCode%hashMap->totalBuckets;
-    HashData* hash_data = createHashData(key,value);
-    Bucket *bucket = (Bucket*)hashMap->buckets.base[bucketNo];
+	int index=0,hashCode,bucketNo;
+	HashData* hash_data;
+	Bucket *bucket;
+    hashCode= hashMap->hasGenerator(key,hashMap);
+    bucketNo = hashCode%hashMap->totalBuckets;
+    hash_data = createHashData(key,value);
+    bucket = (Bucket*)hashMap->buckets.base[bucketNo];
     index = ((List*)hashMap->allKeys)->length + 1;
     insertNode((List*)hashMap->allKeys,index,key);  
     insertNode(bucket->dlist,1,hash_data);

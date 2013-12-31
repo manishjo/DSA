@@ -165,5 +165,4 @@ void test_getkeys_should_not_return_keys_if_there_are_no_any_keys(){
 	iterator = getKeys(hash_map);
 	ASSERT(iterator->nextNode(iterator) == NULL);
 	dispose_hash(hash_map);
-	
 }
