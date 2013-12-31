@@ -41,6 +41,7 @@ void test_put_should_put_two_values_in_the_bucket(){
 	ASSERT(result == 1);
 	result = put(hash_map,value2,key2);
 	ASSERT(result == 1);
+	dispose_hash(hash_map);
 }
 
 void test_get_should_get_a_value_from_a_key(){
@@ -51,6 +52,8 @@ void test_get_should_get_a_value_from_a_key(){
 	put(hash_map,&value,&key);
 	result = Get(hash_map,&key);
 	ASSERT(strcmp(*(string*)value,*(string*)result) == 0);
+	dispose_hash(hash_map);
+
 }
 
 
@@ -65,6 +68,8 @@ void test_get_should_get_value_from_a_key_among_two(){
 	put(hash_map,&value2,&key2);
 	result = Get(hash_map,&key2);
 	ASSERT(strcmp(*(string*)value2,*(string*)result) == 0);
+	dispose_hash(hash_map);
+
 }
 
 void test_get_should_not_return_value_if_key_is_not_present(){
@@ -76,6 +81,8 @@ void test_get_should_not_return_value_if_key_is_not_present(){
 	put(hash_map,&value,&key);
 	result = Get(hash_map,&key2);
 	ASSERT(result == NULL);
+	dispose_hash(hash_map);
+
 }
 
 void test_delete_should_delete_given_key_value_from_the_hash(){
@@ -92,6 +99,8 @@ void test_delete_should_delete_given_key_value_from_the_hash(){
 	ASSERT(result == 1);
 	valueCheak = Get(hash_map,&key2);
 	ASSERT(valueCheak == NULL);
+	dispose_hash(hash_map);
+
 }
 
 void test_delete_should_delete_if_there_is_only_one_key_in_hash(){
@@ -103,6 +112,8 @@ void test_delete_should_delete_if_there_is_only_one_key_in_hash(){
 	remove_hash(hash_map,&key);
 	valueCheak = Get(hash_map,&key);
 	ASSERT(valueCheak == NULL);
+	dispose_hash(hash_map);
+
 }	
 
 void test_delete_should_not_delete_if_value_is_not_find(){
@@ -114,6 +125,8 @@ void test_delete_should_not_delete_if_value_is_not_find(){
 	put(hash_map,&value,&key);
 	result = remove_hash(hash_map,&key2);
 	ASSERT(result == 0);
+	dispose_hash(hash_map);
+
 }		
 
 void test_getKeys_should_return_key(){
@@ -124,6 +137,8 @@ void test_getKeys_should_return_key(){
 	put(hash_map,&value,&key);
 	iterator = getKeys(hash_map);
 	ASSERT(iterator->nextNode(iterator) == &key);
+	dispose_hash(hash_map);
+
 }
 
 void test_getKeys_should_return_two_keys(){
@@ -139,6 +154,8 @@ void test_getKeys_should_return_two_keys(){
 	iterator = getKeys(hash_map);
 	ASSERT(iterator->nextNode(iterator) == &key);
 	ASSERT(iterator->nextNode(iterator) == &key2);
+	dispose_hash(hash_map);
+
 }
 
 void test_getkeys_should_not_return_keys_if_there_are_no_any_keys(){
@@ -147,4 +164,6 @@ void test_getkeys_should_not_return_keys_if_there_are_no_any_keys(){
 	Hash_map* hash_map = create_hash(hasCodeGenerator,compareIt,10);
 	iterator = getKeys(hash_map);
 	ASSERT(iterator->nextNode(iterator) == NULL);
+	dispose_hash(hash_map);
+	
 }

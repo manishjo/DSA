@@ -19,3 +19,4 @@ int put(Hash_map *hashMap,void *value,void *key);
 void* Get(Hash_map *hashMap , void *key);
 int remove_hash(Hash_map* hashMap, void * key);
 HashIterator* getKeys(Hash_map* hashMap);
+void dispose_hash(Hash_map* hash);

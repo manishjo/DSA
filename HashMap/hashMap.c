@@ -93,3 +93,14 @@ HashIterator* getKeys(Hash_map* hashMap){
 	iterator = getListIterator(list);
 	return iterator;
 }
+
+void dispose_hash(Hash_map* hash){
+    ArrayList* arrlist = &hash->buckets;
+    Bucket* bucket;
+    Iterator* itBucket = getIterator(arrlist);
+    while(itBucket->hasNext(itBucket)){
+        bucket = itBucket->next(itBucket);
+        disposeList(bucket->dlist);
+        free(bucket);
+    }
+}
