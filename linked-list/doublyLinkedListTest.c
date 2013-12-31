@@ -28,6 +28,8 @@ void test_insert_should_insert_node_in_the_frist_position(){
  	start = createList();
  	answer = insertNode(start,1,&element);
  	answer = insertNode(start,1,&element2);
+ 	printf("first %d\n", *(int*)start->head->data);
+ 	printf("second %d\n", *(int*)start->head->next->data);
  	ASSERT(answer == 1);
 
 };

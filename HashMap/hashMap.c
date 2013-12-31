@@ -26,6 +26,7 @@ Hash_map* create_hash(hasGenerator hashCode, KeyComparator compareFunc, int tota
 	hashMap->compare = compareFunc;
 	hashMap->totalBuckets = totalBuckets;
 	hashMap->hasGenerator = hashCode;
+    hashMap->allKeys = createList();
 	return hashMap;
 };
 
@@ -37,12 +38,13 @@ HashData* createHashData(void* key, void* value){
 }
 
 int put(Hash_map *hashMap,void *value,void *key){
+	int index=0;
     int hashCode= hashMap->hasGenerator(key,hashMap);
     int bucketNo = hashCode%hashMap->totalBuckets;
     HashData* hash_data = createHashData(key,value);
     Bucket *bucket = (Bucket*)hashMap->buckets.base[bucketNo];
-    hashMap->allKeys = createList();
-    insertNode((List*)hashMap->allKeys,1,key);  
+    index = ((List*)hashMap->allKeys)->length + 1;
+    insertNode((List*)hashMap->allKeys,index,key);  
     insertNode(bucket->dlist,1,hash_data);
     return 1;
 };

@@ -125,3 +125,18 @@ void test_getKeys_should_return_key(){
 	iterator = getKeys(hash_map);
 	ASSERT(iterator->nextNode(iterator) == &key);
 }
+
+void test_getKeys_should_return_two_keys(){
+	void* valueCheak;
+	HashIterator* iterator;
+	string key = "formidable";
+	string value = "powerfull";
+	string key2 = "chumma";
+	string value2 = "simpely";
+	Hash_map* hash_map = create_hash(hasCodeGenerator,compareIt,10);
+	put(hash_map,&value,&key);
+	put(hash_map,&value2,&key2);
+	iterator = getKeys(hash_map);
+	ASSERT(iterator->nextNode(iterator) == &key);
+	ASSERT(iterator->nextNode(iterator) == &key2);
+}

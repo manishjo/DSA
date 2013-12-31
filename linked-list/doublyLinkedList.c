@@ -22,9 +22,10 @@ int insertFirst(Node* nodePtr,void*data,List* start){
 };
 
 int insertOnFirst(Node* nodePtr,void*data,List* start){
+        Node* temp = start->head;
         nodePtr->data = data;
-        nodePtr->next = start->head;
         start->head = nodePtr;
+        nodePtr->next = temp;
         start->length += 1;
         return 1;        
 }
