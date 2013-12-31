@@ -94,6 +94,11 @@ int main(){
 		test_delete_should_not_delete_if_value_is_not_find();
 	tearDown();
 	testEnded();
+	testStarted("test_getKeys_should_return_all_keys_one_by_one");
+	setup();
+		test_getKeys_should_return_all_keys_one_by_one();
+	tearDown();
+	testEnded();
 
 	summarizeTestCount();
 	fixtureTearDown();

@@ -116,15 +116,12 @@ void test_delete_should_not_delete_if_value_is_not_find(){
 	ASSERT(result == 0);
 }		
 
-
-
-
-
-
-
-
-
-
-
-
-
+void test_getKeys_should_return_key(){
+	HashIterator* iterator;
+	string key = "formidable";
+	string value = "powerfull";
+	Hash_map* hash_map = create_hash(hasCodeGenerator,compareIt,10);
+	put(hash_map,&value,&key);
+	iterator = getKeys(hash_map);
+	ASSERT(iterator->nextNode(iterator) == &key);
+}
