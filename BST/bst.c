@@ -21,9 +21,9 @@ Bst_node* getNode(void* data){
 }
 
 int insert(Bst* tree, void* data){
-	Bst_node* bstNode;
+	Bst_node* bstNode = getNode(data);
 	if(tree->root == NULL){
-		bstNode = getNode(data);
+		tree->root = bstNode;
 		return 1;
 	}
 	return 0;

@@ -25,3 +25,4 @@ void test_should_create_root_node_in_tree(){
 	answer = insert(tree,&data);
 	ASSERT(answer == 1);
 }
+
