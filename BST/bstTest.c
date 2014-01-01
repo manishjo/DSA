@@ -5,11 +5,13 @@
 //create setup, tearDown, fixtureSetup, fixtureTearDown methods if needed
 
 int compareIntData(void*first, void*second){
-	return *(int*)first == *(int*)second;
+	if(*(int*)first > *(int*)second) return 1;
+	return -1;
 }
 
 int compareCharData(void*first, void*second){
-	return *(char*)first == *(char*)second;
+	if(*(char*)first > *(char*)second) return 1;
+	return -1;
 }
 
 void test_create_should_create_a_tree(){
@@ -23,4 +25,3 @@ void test_should_create_root_node_in_tree(){
 	answer = insert(tree,&data);
 	ASSERT(answer == 1);
 }
-
