@@ -36,4 +36,11 @@ void test_should_create_root_node_with_char_data_in_tree(){
 	ASSERT(answer == 1);
 }
 
-
+void test_should_insert_int_children_data_to_root_node(){
+	Bst* tree = create(compareIntData);
+	int data = 5,data2 = 10,answer;
+	answer = insert(tree,&data);
+	answer = insert(tree,&data2);
+	// ASSERT(&data == getRootData(tree));
+	ASSERT(answer == 1);	
+} 
