@@ -3,8 +3,8 @@
 typedef int compareFunc (void* frist, void* second);
 
 typedef struct {
-	void* root;
-	compareFunc *compare;
+        void* root;
+        compareFunc *compare;
 } Tree;
 
 Tree createTree(compareFunc* compare);

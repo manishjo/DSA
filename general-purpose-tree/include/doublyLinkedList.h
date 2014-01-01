@@ -10,10 +10,10 @@ typedef struct{
 }List;
 
 typedef struct iterator{
-	int (*hasNext)(struct iterator* it);
-	void* (*next)(struct iterator* it);
-	List* list;
-	int currentPosition;
+        int (*hasNext)(struct iterator* it);
+        void* (*next)(struct iterator* it);
+        List* list;
+        int currentPosition;
 }Iterator;
 
 List* create();
@@ -25,4 +25,3 @@ void dispose(List* start);
 Iterator* getIterator(List* list);
 int hasNext(Iterator* iterator);
 void* next(Iterator* iterator);
-
