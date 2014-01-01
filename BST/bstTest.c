@@ -19,10 +19,21 @@ void test_create_should_create_a_tree(){
 	ASSERT(tree->root == NULL);	
 }
 
-void test_should_create_root_node_in_tree(){
+void test_should_create_root_node_with_int_data_in_tree(){
 	Bst* tree = create(compareIntData);
 	int data = 5,answer;
 	answer = insert(tree,&data);
+	ASSERT(&data == getRootData(tree));
 	ASSERT(answer == 1);
 }
+
+void test_should_create_root_node_with_char_data_in_tree(){
+	Bst* tree = create(compareIntData);
+	char data = 'm';
+	int answer;
+	answer = insert(tree,&data);
+	ASSERT(&data == getRootData(tree));
+	ASSERT(answer == 1);
+}
+
 

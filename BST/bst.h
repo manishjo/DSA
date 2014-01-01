@@ -7,6 +7,6 @@ typedef struct bst{
 
 Bst* create(compareFunc* compareFunction);
 int insert(Bst* tree, void* data);
-int getRootData(Bst* tree);
+void* getRootData(Bst* tree);
 int remove(Bst* tree, void* data);
 int search(Bst* tree, void* data);
