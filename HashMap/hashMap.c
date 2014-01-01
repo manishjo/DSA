@@ -16,14 +16,18 @@ Bucket *createBuckets(){
 	return bucket;
 };
 
-Hash_map* create_hash(hasGenerator hashCode, KeyComparator compareFunc, int totalBuckets){
-	Hash_map* hashMap = calloc(1, sizeof(Hash_map));
+void assignListToBuckets(Hash_map* hashMap,int totalBucket){
 	int i;
-	hashMap->buckets = create(totalBuckets);
-	for(i=0;i<totalBuckets;i++)
-		hashMap->buckets.base[i]= createBuckets();
+	for(i=0;i<totalBucket;i++)
+	hashMap->buckets.base[i]= createBuckets();
+}
+
+Hash_map* create_hash(hasGenerator hashCode, KeyComparator compareFunc, int totalBucket){
+	Hash_map* hashMap = calloc(1, sizeof(Hash_map));
+	hashMap->buckets = create(totalBucket);
+	assignListToBuckets(hashMap,totalBucket);
 	hashMap->compare = compareFunc;
-	hashMap->totalBuckets = totalBuckets;
+	hashMap->totalBucket = totalBucket;
 	hashMap->hasGenerator = hashCode;
     hashMap->allKeys = createList();
 	return hashMap;
@@ -39,7 +43,7 @@ HashData* createHashData(void* key, void* value){
 void DisposeExistingList(Hash_map* hashMap){
 	int i;
 	List* bucket;
-	for(i=0;i<hashMap->totalBuckets;i++){
+	for(i=0;i<hashMap->totalBucket;i++){
 		bucket = ((List*)hashMap->buckets.base[i]);
 		disposeList(bucket);
 	}
@@ -49,12 +53,11 @@ int rehashing(Hash_map *hashMap){
 	int i;
 	HashData* bucket;
 	HashIterator* iterator;
-	int totalBuckets = hashMap->totalBuckets;
+	int totalBucket = hashMap->totalBucket;
    	DisposeExistingList(hashMap);
-   	hashMap->totalBuckets =totalBuckets*2;
-   	hashMap->buckets.base = realloc(hashMap->buckets.base ,hashMap->totalBuckets*sizeof(void*));
-	for(i=0;i<hashMap->totalBuckets;i++)
-		hashMap->buckets.base[i]= createBuckets();
+   	hashMap->totalBucket =totalBucket*2;
+   	hashMap->buckets.base = realloc(hashMap->buckets.base ,hashMap->totalBucket*sizeof(void*));
+   	assignListToBuckets(hashMap,hashMap->totalBucket);
 	iterator = getListIterator(hashMap->allKeys);
 	while(iterator->hasNextNode(iterator)){
 		bucket = iterator->nextNode(iterator);
@@ -75,7 +78,7 @@ int put(Hash_map *hashMap,void *value,void *key){
 	HashData* hash_data;
 	Bucket *bucket;
     hashCode= hashMap->hasGenerator(key);
-    bucketNo = hashCode%hashMap->totalBuckets;
+    bucketNo = hashCode%hashMap->totalBucket;
     hash_data = createHashData(key,value);
     index = ((List*)hashMap->allKeys)->length + 1;
     insertNode((List*)hashMap->allKeys,index,hash_data);  
@@ -90,7 +93,7 @@ void* Get(Hash_map *hashMap, void *key){
 	HashData* currentData;
 	ListIterator *iterator;
 	int hashCode = hashMap->hasGenerator(key);
-	int bucketNo = hashCode % hashMap->totalBuckets;
+	int bucketNo = hashCode % hashMap->totalBucket;
     Bucket *bucket = (Bucket*)hashMap->buckets.base[bucketNo];
 	iterator = getListIterator(bucket->dlist);
 	while(iterator->hasNextNode(iterator)){
@@ -107,7 +110,7 @@ int remove_hash(Hash_map* hashMap, void * key){
 	List* list;
     Node* node;
 	int hashCode = hashMap->hasGenerator(key);
-	int bucketNo = hashCode % hashMap->totalBuckets;
+	int bucketNo = hashCode % hashMap->totalBucket;
     Bucket *bucket = (Bucket*)hashMap->buckets.base[bucketNo];
     list = bucket->dlist;
     node = list->head;

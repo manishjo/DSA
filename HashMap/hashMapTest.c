@@ -18,7 +18,7 @@ int compareIt(void* firstKey, void* secondkey){
 
 void test_create_hash_should_create_a_hash_map(){
 	Hash_map *hash_map = create_hash(hasCodeGenerator, compareIt,10);
-	ASSERT(hash_map->totalBuckets == 10);
+	ASSERT(hash_map->totalBucket == 10);
 };
 
 void test_put_should_put_a_value_in_the_bucket(){

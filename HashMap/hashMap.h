@@ -7,7 +7,7 @@ typedef struct hashMap{
 	ArrayList buckets;
 	int (*hasGenerator)(void* key);
 	KeyComparator compare;
-	int totalBuckets;
+	int totalBucket;
 	void* allKeys; 
 }Hash_map;
 
