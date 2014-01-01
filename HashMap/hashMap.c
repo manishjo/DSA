@@ -49,20 +49,24 @@ void DisposeExistingList(Hash_map* hashMap){
 	}
 }
 
-int rehashing(Hash_map *hashMap){
-	int i;
-	HashData* bucket;
+void Put_hashData_agian_in_HashMap(Hash_map *hashMap,HashData* bucket){
 	HashIterator* iterator;
-	int totalBucket = hashMap->totalBucket;
-   	DisposeExistingList(hashMap);
-   	hashMap->totalBucket =totalBucket*2;
-   	hashMap->buckets.base = realloc(hashMap->buckets.base ,hashMap->totalBucket*sizeof(void*));
-   	assignListToBuckets(hashMap,hashMap->totalBucket);
 	iterator = getListIterator(hashMap->allKeys);
 	while(iterator->hasNextNode(iterator)){
 		bucket = iterator->nextNode(iterator);
 		put(hashMap,bucket->value,bucket->key);
 	}
+}
+
+int rehashing(Hash_map *hashMap){
+	int i;
+	HashData* bucket;
+	int totalBucket = hashMap->totalBucket;
+   	DisposeExistingList(hashMap);
+   	hashMap->totalBucket =totalBucket*2;
+   	hashMap->buckets.base = realloc(hashMap->buckets.base ,hashMap->totalBucket*sizeof(void*));
+   	assignListToBuckets(hashMap,hashMap->totalBucket);
+	Put_hashData_agian_in_HashMap(hashMap,bucket);
 	return 1;
 }
 
