@@ -37,6 +37,41 @@ HashData* createHashData(void* key, void* value){
     return hash_data;
 }
 
+void DisposeExistingList(Hash_map* hashMap){
+	int i;
+	List* bucket;
+	for(i=0;i<hashMap->totalBuckets;i++){
+		bucket = ((List*)hashMap->buckets.base[i]);
+		disposeList(bucket);
+	}
+}
+
+int rehashing(Hash_map *hashMap){
+	int i;
+	HashData* bucket;
+	HashIterator* iterator;
+	int totalBuckets = hashMap->totalBuckets;
+   	DisposeExistingList(hashMap);
+   	hashMap->totalBuckets =totalBuckets*2;
+   	hashMap->buckets.base = realloc(hashMap->buckets.base ,hashMap->totalBuckets*sizeof(void*));
+	for(i=0;i<hashMap->totalBuckets;i++){
+		hashMap->buckets.base[i]= createBuckets();
+	};
+	iterator = getListIterator(hashMap->allKeys);
+	while(iterator->hasNextNode(iterator)){
+		bucket = iterator->nextNode(iterator);
+		put(hashMap,bucket->value,bucket->key);
+	}
+	return 1;
+}
+
+int checkForRehashing(Hash_map *hashMap, int bucketNo){
+	List* HashList = ((List*)hashMap->buckets.base[bucketNo]);
+	if(HashList->length <= 2)
+		return 0;
+	return rehashing(hashMap);
+}
+
 int put(Hash_map *hashMap,void *value,void *key){
 	int index=0,hashCode,bucketNo;
 	HashData* hash_data;
@@ -44,9 +79,10 @@ int put(Hash_map *hashMap,void *value,void *key){
     hashCode= hashMap->hasGenerator(key);
     bucketNo = hashCode%hashMap->totalBuckets;
     hash_data = createHashData(key,value);
-    bucket = (Bucket*)hashMap->buckets.base[bucketNo];
     index = ((List*)hashMap->allKeys)->length + 1;
     insertNode((List*)hashMap->allKeys,index,hash_data);  
+	if(1 == checkForRehashing(hashMap,bucketNo)) return 1;
+    bucket = (Bucket*)hashMap->buckets.base[bucketNo];
     insertNode(bucket->dlist,1,hash_data);
     return 1;
 };
@@ -116,4 +152,5 @@ void dispose_hash(Hash_map* hash){
         disposeList(bucket->dlist);
         free(bucket);
     }
+    disposeList(hash->allKeys);
 }

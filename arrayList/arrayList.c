@@ -103,7 +103,7 @@ Iterator* getIterator(ArrayList* list){
 	return iterator;
 }
 
-void dispose(ArrayList *list) {
+void dispose(ArrayList *list){
 	free(list->base);
 }
 
