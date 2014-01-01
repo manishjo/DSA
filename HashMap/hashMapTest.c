@@ -6,7 +6,7 @@
 
 typedef char string[15];
 
-int hasCodeGenerator(void* key,Hash_map *hashMap){
+int hasCodeGenerator(void* key){
 	char* res =  (char*)key;
 	int a = res[0];
 	return a;

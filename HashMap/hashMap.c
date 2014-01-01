@@ -41,12 +41,12 @@ int put(Hash_map *hashMap,void *value,void *key){
 	int index=0,hashCode,bucketNo;
 	HashData* hash_data;
 	Bucket *bucket;
-    hashCode= hashMap->hasGenerator(key,hashMap);
+    hashCode= hashMap->hasGenerator(key);
     bucketNo = hashCode%hashMap->totalBuckets;
     hash_data = createHashData(key,value);
     bucket = (Bucket*)hashMap->buckets.base[bucketNo];
     index = ((List*)hashMap->allKeys)->length + 1;
-    insertNode((List*)hashMap->allKeys,index,key);  
+    insertNode((List*)hashMap->allKeys,index,hash_data);  
     insertNode(bucket->dlist,1,hash_data);
     return 1;
 };
@@ -55,7 +55,7 @@ void* Get(Hash_map *hashMap, void *key){
 	int i;
 	HashData* currentData;
 	ListIterator *iterator;
-	int hashCode = hashMap->hasGenerator(key,hashMap);
+	int hashCode = hashMap->hasGenerator(key);
 	int bucketNo = hashCode % hashMap->totalBuckets;
     Bucket *bucket = (Bucket*)hashMap->buckets.base[bucketNo];
 	iterator = getListIterator(bucket->dlist);
@@ -72,7 +72,7 @@ int remove_hash(Hash_map* hashMap, void * key){
 	HashData* currentData;
 	List* list;
     Node* node;
-	int hashCode = hashMap->hasGenerator(key,hashMap);
+	int hashCode = hashMap->hasGenerator(key);
 	int bucketNo = hashCode % hashMap->totalBuckets;
     Bucket *bucket = (Bucket*)hashMap->buckets.base[bucketNo];
     list = bucket->dlist;
@@ -89,10 +89,21 @@ int remove_hash(Hash_map* hashMap, void * key){
 	return 0;
 }
 
+void* allKeys(HashIterator* iterator){
+	HashData* hashdata;
+	HashIterator* iterator2 = getListIterator(iterator->list);
+	iterator2->currentPosition = iterator->currentPosition;
+	hashdata = iterator2->nextNode(iterator2);
+	iterator->currentPosition++;
+	if(hashdata == NULL) return NULL;
+	return hashdata->key;		
+}
+
 HashIterator* getKeys(Hash_map* hashMap){
 	HashIterator* iterator;
 	List* list = ((List*)hashMap->allKeys);
 	iterator = getListIterator(list);
+	iterator->nextNode = allKeys; 
 	return iterator;
 }
 

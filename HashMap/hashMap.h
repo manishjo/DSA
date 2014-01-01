@@ -5,7 +5,7 @@ typedef int (*KeyComparator)(void* firstKey, void* secondKey);
 
 typedef struct hashMap{
 	ArrayList buckets;
-	int (*hasGenerator)(void* key,struct hashMap* hash_map);
+	int (*hasGenerator)(void* key);
 	KeyComparator compare;
 	int totalBuckets;
 	void* allKeys; 
@@ -13,7 +13,7 @@ typedef struct hashMap{
 
 typedef ListIterator HashIterator;
 
-typedef int (*hasGenerator)(void* key,Hash_map* hash_map);
+typedef int (*hasGenerator)(void* key);
 Hash_map* create_hash(hasGenerator hashCode, KeyComparator compareFunc, int totalBuckets);
 int put(Hash_map *hashMap,void *value,void *key);
 void* Get(Hash_map *hashMap , void *key);
