@@ -30,19 +30,14 @@ TreeNode* compareNodes(List* list, compareFunc* compareFunc, void* parentData){
     TreeNode* treeNode,result;
     Iterator* iteratorChild;
     List *listOfChildren = create();
-    if (0 == iterator->hasNext(iterator)){
-    	return NULL;
-    }
+    if (0 == iterator->hasNext(iterator)) return NULL;
     while(iterator->hasNext(iterator)){
         treeNode = (TreeNode*)iterator->next(iterator);
-        if(compareFunc(treeNode->data,parentData)){
-            return treeNode;
-        }
+        if(compareFunc(treeNode->data,parentData)) return treeNode;
         if(treeNode->children->head != NULL){
 	        iteratorChild = getIterator(treeNode->children);
-	        while(iteratorChild->hasNext(iteratorChild)){
+	        while(iteratorChild->hasNext(iteratorChild))
 	            insert(listOfChildren, listOfChildren->length + 1, iteratorChild->next(iteratorChild));
-	        }
         }
     }
     return compareNodes(listOfChildren,compareFunc,parentData);
@@ -52,8 +47,7 @@ TreeNode* compareNodes(List* list, compareFunc* compareFunc, void* parentData){
 TreeNode* searchThisNode(Tree* tree,void* parentData){
 	TreeNode* parent;
  	TreeNode* root = tree->root;
-    if(NULL == root)
-        return NULL;
+    if(NULL == root) return NULL;
     if(tree->compare(root->data, parentData)) return root;
     parent = compareNodes(root->children, tree->compare, parentData);
     return parent;
@@ -66,7 +60,6 @@ int insertNode(Tree* tree, void* parentData, void* dataToInsert ){
 		tree->root = getNode(parentData,dataToInsert);
 		return 1;
 	};
-
 	parentNode = searchThisNode(tree,parentData);
 	if(parentNode == NULL) return 0;	
 	childNode = getNode(parentNode,dataToInsert);
@@ -108,7 +101,6 @@ int searchNode(Tree* tree,void* data){
 	if(data == ((TreeNode*)tree->root)->data)return 1;
 	return searchThisNode(tree,data) != NULL;
 }
-
 
 void* getNextChildData(Iterator* iterator){
     TreeNode *node;
