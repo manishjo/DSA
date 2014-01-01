@@ -20,9 +20,8 @@ Hash_map* create_hash(hasGenerator hashCode, KeyComparator compareFunc, int tota
 	Hash_map* hashMap = calloc(1, sizeof(Hash_map));
 	int i;
 	hashMap->buckets = create(totalBuckets);
-	for(i=0;i<totalBuckets;i++){
+	for(i=0;i<totalBuckets;i++)
 		hashMap->buckets.base[i]= createBuckets();
-	};
 	hashMap->compare = compareFunc;
 	hashMap->totalBuckets = totalBuckets;
 	hashMap->hasGenerator = hashCode;
@@ -54,9 +53,8 @@ int rehashing(Hash_map *hashMap){
    	DisposeExistingList(hashMap);
    	hashMap->totalBuckets =totalBuckets*2;
    	hashMap->buckets.base = realloc(hashMap->buckets.base ,hashMap->totalBuckets*sizeof(void*));
-	for(i=0;i<hashMap->totalBuckets;i++){
+	for(i=0;i<hashMap->totalBuckets;i++)
 		hashMap->buckets.base[i]= createBuckets();
-	};
 	iterator = getListIterator(hashMap->allKeys);
 	while(iterator->hasNextNode(iterator)){
 		bucket = iterator->nextNode(iterator);
