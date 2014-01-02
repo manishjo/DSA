@@ -14,22 +14,22 @@ Bst* create(compareFunc* compareFunction){
 	tree->compare = compareFunction;
 	tree->root = NULL;
 	return tree;
-}
+};
 
-Bst_node* giveBstNode(void* data){
+Bst_node* getBstNode(void* data){
 	Bst_node* bstNode = calloc(1,sizeof(Bst_node));
 	bstNode->data = data;
 	return bstNode;
-}
+};
 
 Bst_node* searchNodeToLeft(Bst_node* nodeData,Bst* tree,void* data){
 	if(nodeData->leftChild == NULL) return nodeData;
-	return getNode(tree,nodeData,data);
+	return getNode(tree,nodeData->leftChild,data);
 }
 
 Bst_node* searchNodeToRight(Bst_node* nodeData,Bst* tree,void* data){
 	if(nodeData->rightChild == NULL) return nodeData;
-	return getNode(tree,nodeData,data);
+	return getNode(tree,nodeData->rightChild,data);
 }
 
 Bst_node* getNode(Bst* tree,Bst_node* nodeData, void* data){
@@ -49,7 +49,7 @@ void putNodeToRightLocation(Bst_node* bstNode,Bst_node* childNode,Bst* tree){
 }
 
 int insert(Bst* tree, void* data){
-	Bst_node* childNode = giveBstNode(data);
+	Bst_node* childNode = getBstNode(data);
 	Bst_node* bstNode;
 	if(tree->root == NULL){
 		tree->root = childNode;
