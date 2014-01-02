@@ -14,6 +14,10 @@ int compareCharData(void*first, void*second){
 	return -1;
 }
 
+int compareIntParents(void* first, void* second){
+	return *(int*)first == *(int*)second;
+}
+
 void test_create_should_create_a_tree(){
 	Bst* tree = create(compareIntData);
 	ASSERT(tree->root == NULL);	
@@ -38,9 +42,12 @@ void test_should_create_root_node_with_char_data_in_tree(){
 
 void test_should_insert_int_children_data_to_root_node(){
 	Bst* tree = create(compareIntData);
+	childs* childs;
 	int data = 5,data2 = 10,answer;
 	answer = insert(tree,&data);
 	answer = insert(tree,&data2);
+	childs = getChildrens(tree,&data,compareIntParents);
+	ASSERT(10 == *(int*)(childs->rightData));
 	ASSERT(answer == 1);	
 } 
 

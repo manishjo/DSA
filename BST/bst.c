@@ -8,6 +8,7 @@ typedef struct node{
 }Bst_node;
 
 Bst_node* getNode(Bst* tree,Bst_node* nodeData, void* data);
+Bst_node* searchParent(Bst *tree,Bst_node* bstNode,void *parent,compareFunc* compare);
 
 Bst* create(compareFunc* compareFunction){
 	Bst* tree = calloc(1,sizeof(Bst));
@@ -64,3 +65,36 @@ void* getRootData(Bst* tree){
 	Bst_node* root = tree->root;
 	return root->data;
 }
+
+Bst_node* goToLeft(Bst *tree,Bst_node* bstNode,void *parent,compareFunc* compare){
+	if(compare(bstNode->leftChild,parent) == 1) return bstNode;
+	return searchParent(tree,bstNode->leftChild,parent,compare);
+};
+
+Bst_node* goToRight(Bst *tree,Bst_node* bstNode,void *parent,compareFunc* compare){
+	if(compare(bstNode->rightChild,parent) == 1) return bstNode;
+	return searchParent(tree,bstNode->rightChild,parent,compare);
+};
+
+Bst_node* searchParent(Bst *tree,Bst_node* bstNode,void *parent,compareFunc* compare){
+	int result;
+	if(compare(bstNode->data,parent) == 1) return bstNode;
+	result = tree->compare(bstNode->data,parent);
+	if(result == 1)
+		bstNode = goToLeft(tree,bstNode,parent,compare);
+	bstNode = goToRight(tree,bstNode,parent,compare);
+	return bstNode;
+}
+
+childs* getChildrens(Bst *tree,void *parent,compareFunc* compare){
+	Bst_node* bstNode = tree->root;
+	childs* childNode = calloc(1,sizeof(childs));
+	if(parent == NULL) return NULL;
+	bstNode = searchParent(tree,bstNode,parent,compare);
+	if(bstNode->leftChild == NULL && bstNode->rightChild == NULL) return NULL;
+	if(bstNode->leftChild == NULL) 
+		childNode->rightData = bstNode->rightChild->data;
+	if(bstNode->rightChild == NULL)
+		childNode->leftData = bstNode->leftChild->data;
+	return childNode;
+};
