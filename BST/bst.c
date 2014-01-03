@@ -20,6 +20,7 @@ Bst* create(compareFunc* compareFunction){
 Bst_node* getBstNode(void* data){
 	Bst_node* bstNode = calloc(1,sizeof(Bst_node));
 	bstNode->data = data;
+	bstNode->leftChild = bstNode->rightChild = NULL;
 	return bstNode;
 };
 
@@ -37,15 +38,16 @@ Bst_node* getNode(Bst* tree,Bst_node* nodeData, void* data){
 	Bst_node* bstNode;
 	int result = tree->compare(nodeData->data,data);
 	if(result == 1)
-		bstNode = searchNodeToLeft(nodeData,tree,data);
-	bstNode = searchNodeToRight(nodeData,tree,data);
-	return bstNode;
+		return  searchNodeToLeft(nodeData,tree,data);
+	return  searchNodeToRight(nodeData,tree,data);
 }
 
 void putNodeToRightLocation(Bst_node* bstNode,Bst_node* childNode,Bst* tree){
 	int decide = tree->compare(bstNode->data,childNode->data);
-	if(decide == 1)
+	if(decide == 1){
 		bstNode->leftChild = childNode;
+		return;
+	}
 	bstNode->rightChild = childNode;
 }
 
@@ -67,12 +69,12 @@ void* getRootData(Bst* tree){
 }
 
 Bst_node* goToLeft(Bst *tree,Bst_node* bstNode,void *parent,compareFunc* compare){
-	if(compare(bstNode->leftChild,parent) == 1) return bstNode;
+	if(compare(bstNode->data,parent) == 1) return bstNode;
 	return searchParent(tree,bstNode->leftChild,parent,compare);
 };
 
 Bst_node* goToRight(Bst *tree,Bst_node* bstNode,void *parent,compareFunc* compare){
-	if(compare(bstNode->rightChild,parent) == 1) return bstNode;
+	if(compare(bstNode->data,parent) == 1) return bstNode;
 	return searchParent(tree,bstNode->rightChild,parent,compare);
 };
 
@@ -81,20 +83,21 @@ Bst_node* searchParent(Bst *tree,Bst_node* bstNode,void *parent,compareFunc* com
 	if(compare(bstNode->data,parent) == 1) return bstNode;
 	result = tree->compare(bstNode->data,parent);
 	if(result == 1)
-		bstNode = goToLeft(tree,bstNode,parent,compare);
-	bstNode = goToRight(tree,bstNode,parent,compare);
-	return bstNode;
+		return goToLeft(tree,bstNode->leftChild,parent,compare);
+	return goToRight(tree,bstNode->rightChild,parent,compare);
 }
 
 childs* getChildrens(Bst *tree,void *parent,compareFunc* compare){
 	Bst_node* bstNode = tree->root;
 	childs* childNode = calloc(1,sizeof(childs));
+	childNode->leftData = NULL;
+	childNode->rightData = NULL;
 	if(parent == NULL) return NULL;
 	bstNode = searchParent(tree,bstNode,parent,compare);
-	if(bstNode->leftChild == NULL && bstNode->rightChild == NULL) return NULL;
-	if(bstNode->leftChild == NULL) 
-		childNode->rightData = bstNode->rightChild->data;
-	if(bstNode->rightChild == NULL)
+	if(!bstNode) return childNode;
+	if(bstNode->leftChild)
 		childNode->leftData = bstNode->leftChild->data;
+	if(bstNode->rightChild)
+		childNode->rightData = bstNode->rightChild->data;
 	return childNode;
 };

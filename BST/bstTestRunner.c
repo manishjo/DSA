@@ -79,6 +79,11 @@ int main(){
 		test_should_insert_int_children_data_to_a_child_node();
 	tearDown();
 	testEnded();
+	testStarted("test_should_insert_data_anywhere_in_the_tree");
+	setup();
+		test_should_insert_data_anywhere_in_the_tree();
+	tearDown();
+	testEnded();
 
 	summarizeTestCount();
 	fixtureTearDown();
