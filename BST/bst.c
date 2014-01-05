@@ -101,3 +101,8 @@ childs* getChildrens(Bst *tree,void *parent,compareFunc* compare){
 		childNode->rightData = bstNode->rightChild->data;
 	return childNode;
 };
+
+int search(Bst* tree, void* data, compareFunc* compare){
+	Bst_node* bstNode = tree->root;
+	return NULL != searchParent(tree,bstNode,data,compare);
+}

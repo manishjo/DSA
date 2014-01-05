@@ -14,6 +14,5 @@ Bst* create(compareFunc* compareFunction);
 int insert(Bst* tree, void* data);
 void* getRootData(Bst* tree);
 childs* getChildrens(Bst *tree,void *parent,compareFunc* compareFunction);
-
+int search(Bst* tree, void* data,compareFunc* compareFunction);
 // int remove(Bst* tree, void* data);
-// int search(Bst* tree, void* data);

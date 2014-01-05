@@ -84,6 +84,11 @@ int main(){
 		test_should_insert_data_anywhere_in_the_tree();
 	tearDown();
 	testEnded();
+	testStarted("test_should_search_the_node_in_the_bst");
+	setup();
+		test_should_search_the_node_in_the_bst();
+	tearDown();
+	testEnded();
 
 	summarizeTestCount();
 	fixtureTearDown();

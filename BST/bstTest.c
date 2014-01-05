@@ -93,3 +93,17 @@ void test_should_insert_data_anywhere_in_the_tree(){
 	ASSERT(12 == *(int*)(Childs->rightData));
 	ASSERT(6 == *(int*)(Childs->leftData));
 }
+
+void test_should_search_the_node_in_the_bst(){
+	int data[5] = {5,4,8,6,12};
+	int success = 1;
+	Bst* tree = create(compareIntData);
+	insert(tree,&data[0]);
+	insert(tree,&data[1]);
+	insert(tree,&data[2]);
+	insert(tree,&data[3]);
+	insert(tree,&data[4]);
+	ASSERT(success==search(tree,&data[2],compareIntParents));
+}
+
+
